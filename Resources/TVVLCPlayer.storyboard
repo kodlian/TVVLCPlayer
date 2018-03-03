@@ -4,7 +4,6 @@
         <adaptation id="dark"/>
     </device>
     <dependencies>
-        <deployment identifier="tvOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -14,7 +13,7 @@
         <!--Player View Controller-->
         <scene sceneID="niL-Xe-zdn">
             <objects>
-                <viewController id="WfO-Rv-1Kc" customClass="VLCPlayerViewController" customModule="TVVLCPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WfO-Rv-1Kc" customClass="VLCPlayerViewController" customModule="TVVLCPlayer" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="caD-M5-eGT"/>
                         <viewControllerLayoutGuide type="bottom" id="XEy-5K-DaN"/>
@@ -117,7 +116,7 @@
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.74801936619718312" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.30358714788732394" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -144,7 +143,6 @@
                             <outletCollection property="gestureRecognizers" destination="rSG-9P-yKm" appends="YES" id="SJx-99-r1j"/>
                             <outletCollection property="gestureRecognizers" destination="Mao-0Z-rHK" appends="YES" id="GDh-Dd-v2k"/>
                             <outletCollection property="gestureRecognizers" destination="dPw-kB-jYe" appends="YES" id="9IQ-JE-gXO"/>
-                            <outletCollection property="gestureRecognizers" destination="eJM-tY-j0Z" appends="YES" id="eaH-DB-rK2"/>
                         </connections>
                     </view>
                     <connections>
@@ -166,36 +164,29 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gif-C2-90A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="Gjb-u1-0AB">
+                <tapGestureRecognizer enabled="NO" id="Gjb-u1-0AB">
                     <pressTypeMask key="allowedPressTypes" upArrow="YES" downArrow="YES" leftArrow="YES" rightArrow="YES"/>
                     <connections>
                         <action selector="showControl:" destination="WfO-Rv-1Kc" id="L0A-N0-3oC"/>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="qL1-vC-X0o"/>
                     </connections>
                 </tapGestureRecognizer>
-                <panGestureRecognizer enabled="NO" cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="rSG-9P-yKm">
+                <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="rSG-9P-yKm">
                     <connections>
                         <action selector="changePosition:" destination="WfO-Rv-1Kc" id="EUU-dz-Rk7"/>
                     </connections>
                 </panGestureRecognizer>
-                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="dPw-kB-jYe">
+                <tapGestureRecognizer enabled="NO" id="dPw-kB-jYe">
                     <pressTypeMask key="allowedPressTypes" playPause="YES"/>
                     <connections>
                         <action selector="togglePlay:" destination="WfO-Rv-1Kc" id="peZ-hq-fEJ"/>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="B5k-eB-r9x"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="Mao-0Z-rHK">
+                <tapGestureRecognizer enabled="NO" id="Mao-0Z-rHK">
                     <pressTypeMask key="allowedPressTypes" menu="YES"/>
                     <connections>
                         <action selector="cancel:" destination="WfO-Rv-1Kc" id="EBL-7J-hEe"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="eJM-tY-j0Z">
-                    <pressTypeMask key="allowedPressTypes" rightArrow="YES"/>
-                    <connections>
-                        <action selector="fastForward:" destination="WfO-Rv-1Kc" id="Nf0-Xb-qd8"/>
-                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="Kp0-Z4-JrN"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

@@ -8,11 +8,10 @@
 
 import UIKit
 
-class VLCPlayerViewController: UIViewController {
-    static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
+public class VLCPlayerViewController: UIViewController {
+    public static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
         let storyboard = UIStoryboard(name: "TVVLCPlayer", bundle: Bundle(for: VLCPlayerViewController.self))
         let controller = storyboard.instantiateInitialViewController() as! VLCPlayerViewController
-        // controller.media
         return controller
     }
     
@@ -34,16 +33,15 @@ class VLCPlayerViewController: UIViewController {
     @IBOutlet var sliderGesture: UIPanGestureRecognizer!
     @IBOutlet var cancelGesture: UITapGestureRecognizer!
     
-    var url: URL! = URL(string: "https://p-events-delivery.akamaized.net/17oiubaewrvouhboiubasdfv09/m3u8/hls_vod_mvp.m3u8")!
+    public var url: URL! = URL(string: "https://upload.wikimedia.org/wikipedia/commons/8/88/Big_Buck_Bunny_alt.webm")!
     let player = VLCMediaPlayer()
-    var thumbnailer: VLCMediaThumbnailer!
     var sliderTime: VLCTime?
     
-    override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
+    public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         let media = VLCMedia(url: url)
         player.media = media
@@ -63,24 +61,13 @@ class VLCPlayerViewController: UIViewController {
         player.stop()
     }
     
-    override func didReceiveMemoryWarning() {
+    public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
  
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     // MARK: Slider
-
     var lastTranslation: CGFloat = 0.0
     @IBAction func changePosition(_ sender: UIPanGestureRecognizer) {
         decelerateTimer?.invalidate()
@@ -162,18 +149,16 @@ class VLCPlayerViewController: UIViewController {
     // MARK: Control
     var timer: Timer?
     @IBAction func showControl(_ sender: Any) {
+        timer?.invalidate()
+
         guard self.controlView.isHidden else {
             return
         }
-        timer?.invalidate()
         self.cancelGesture.isEnabled = true
         
         UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.controlView.isHidden = false
         })
-        if player.isPlaying {
-            autoHideControl()
-        }
     }
     
     func autoHideControl() {
@@ -202,7 +187,7 @@ class VLCPlayerViewController: UIViewController {
 
 // MARK: - VLC Delegate
 extension VLCPlayerViewController: VLCMediaPlayerDelegate {
-    func mediaPlayerStateChanged(_ aNotification: Notification!) {
+    public func mediaPlayerStateChanged(_ aNotification: Notification!) {
         print(self.player.isSeekable)
         print(self.player.time.value)
 
@@ -226,7 +211,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         //playGesture.isEnabled = player.state != .opening
     }
     
-    func mediaPlayerTimeChanged(_ aNotification: Notification!) {
+    public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         openingIndicator.stopAnimating()
         playGesture.isEnabled = true
         bufferingIndocator.stopAnimating()
@@ -245,7 +230,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
 // MARK: - Gesture
 extension VLCPlayerViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
 
     }

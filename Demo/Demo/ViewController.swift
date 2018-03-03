@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TVVLCPlayer
 
 class ViewController: UIViewController {
 
@@ -20,6 +21,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let playerVC = segue.destination as? VLCPlayerViewController {
+           // player.url = 
+        }
+    }
 }
 

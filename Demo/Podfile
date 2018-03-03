@@ -1,5 +1,4 @@
-# Uncomment the next line to define a global platform for your project
-# platform :tvos, '11.0'
+platform :tvos, '11.0'
 
 source 'https://github.com/CocoaPods/Specs'
 
@@ -8,5 +7,5 @@ target 'Demo' do
   use_frameworks!
 
   # Pods for TVVLCPlayer
-  pod 'TVVLCPlayer', :local => "../TVVLCPlayer.podspec"
+  pod 'TVVLCPlayer', :path => "../TVVLCPlayer.podspec"
 end

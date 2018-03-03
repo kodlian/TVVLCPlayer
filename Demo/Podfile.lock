@@ -1,0 +1,19 @@
+PODS:
+  - TVVLCKit (3.0.1)
+  - TVVLCPlayer (1.0.0):
+    - TVVLCKit
+
+DEPENDENCIES:
+  - TVVLCPlayer (from `../TVVLCPlayer.podspec`)
+
+EXTERNAL SOURCES:
+  TVVLCPlayer:
+    :path: ../TVVLCPlayer.podspec
+
+SPEC CHECKSUMS:
+  TVVLCKit: 50c5a2c0c9d59e426e577eabd8ee4f12c296b2ab
+  TVVLCPlayer: c4b1eff31f853d3f0e13e6660d2b19cf323a2c3c
+
+PODFILE CHECKSUM: cd6e85a71192aae3fb091156c8a3ed38ed34c6f4
+
+COCOAPODS: 1.4.0
