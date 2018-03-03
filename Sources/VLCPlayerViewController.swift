@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GameController
 
 public class VLCPlayerViewController: UIViewController {
     public static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
@@ -15,28 +16,39 @@ public class VLCPlayerViewController: UIViewController {
         return controller
     }
     
+//    enum State {
+//        case play(controlDisplayed: Bool)
+//        case paused(sliderTime: VLCTime)
+//    }
+//
+//    Class that manage slider, class that manage surface control,
+    
+    
+    
     @IBOutlet var videoView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var remainingLabel: UILabel!
     @IBOutlet weak var sliderLabel: UILabel!
     @IBOutlet weak var sliderView: UIView!
     @IBOutlet weak var progressBar: ProgressBar!
+    @IBOutlet weak var rightActionIndicator: UIImageView!
+    @IBOutlet weak var leftActionIndicator: UIImageView!
     
     @IBOutlet weak var controlView: GradientView!
     @IBOutlet weak var positionConstraint: NSLayoutConstraint!
     @IBOutlet weak var positionSliderConstraint: NSLayoutConstraint!
     @IBOutlet weak var bufferingIndocator: UIActivityIndicatorView!
     @IBOutlet weak var openingIndicator: UIActivityIndicatorView!
-    @IBOutlet var showGesture: UITapGestureRecognizer!
     
-    @IBOutlet var playGesture: UITapGestureRecognizer!
+    @IBOutlet var actionGesture: UITapGestureRecognizer!
+    @IBOutlet var playPauseGesture: UITapGestureRecognizer!
     @IBOutlet var sliderGesture: UIPanGestureRecognizer!
     @IBOutlet var cancelGesture: UITapGestureRecognizer!
     
     public var url: URL! = URL(string: "https://upload.wikimedia.org/wikipedia/commons/8/88/Big_Buck_Bunny_alt.webm")!
     let player = VLCMediaPlayer()
     var sliderTime: VLCTime?
-    
+    var remoteActionController: RemoteSurfaceActionController?
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
@@ -55,6 +67,28 @@ public class VLCPlayerViewController: UIViewController {
         remainingLabel.font = font
         positionLabel.font = font
         sliderLabel.font = font
+        
+        
+        remoteActionController = RemoteSurfaceActionController { action in
+           // print(action)
+            self.showControl(self)
+            self.autoHideControl()
+
+            switch action {
+            case .forward:
+                self.leftActionIndicator.image = nil
+                self.rightActionIndicator.image = action.image
+
+            case .backward:
+                self.leftActionIndicator.image = action.image
+                self.rightActionIndicator.image = nil
+
+            case .show:
+                self.leftActionIndicator.image = nil
+                self.rightActionIndicator.image = nil
+            }
+            
+        }
     }
     
     deinit {
@@ -181,6 +215,26 @@ public class VLCPlayerViewController: UIViewController {
         player.play()
         hideControl()
     }
+    @IBAction func handleRemteSurfaceAction(_ sender: UITapGestureRecognizer) {
+        print("select")
+        guard let action = remoteActionController?.currentAction else {
+            return
+        }
+        showControl(sender)
+
+        switch action {
+        case .forward:
+            player.jumpForward(30)
+            autoHideControl()
+
+        case .backward:
+            player.jumpBackward(30)
+            autoHideControl()
+
+        case .show:
+            togglePlay(sender)
+        }
+    }
 }
 
 
@@ -213,7 +267,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         openingIndicator.stopAnimating()
-        playGesture.isEnabled = true
+        playPauseGesture.isEnabled = true
         bufferingIndocator.stopAnimating()
      
         positionLabel.text = player.time.stringValue

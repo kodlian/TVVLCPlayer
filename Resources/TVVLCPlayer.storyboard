@@ -93,10 +93,27 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Sti-Nb-A6T">
                                         <rect key="frame" x="171" y="219" width="40" height="40"/>
                                     </activityIndicatorView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZnM-wJ-iBG">
+                                        <rect key="frame" x="165" y="219" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="40" id="ewe-at-YFQ"/>
+                                            <constraint firstAttribute="height" constant="40" id="kw0-G0-rOL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Dd-II-92q">
+                                        <rect key="frame" x="43" y="219" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="93M-xr-P7c"/>
+                                            <constraint firstAttribute="width" constant="40" id="tBO-eX-Rvf"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="ZnM-wJ-iBG" firstAttribute="leading" secondItem="zf6-aI-TXF" secondAttribute="trailing" constant="8" id="2zW-oQ-fAE"/>
                                     <constraint firstItem="bSH-lc-2cR" firstAttribute="trailing" secondItem="e4b-RO-Ryc" secondAttribute="trailing" id="5ea-qc-s2g"/>
+                                    <constraint firstItem="zf6-aI-TXF" firstAttribute="centerY" secondItem="ZnM-wJ-iBG" secondAttribute="centerY" id="6Ea-eu-Cwu"/>
+                                    <constraint firstItem="1Dd-II-92q" firstAttribute="top" secondItem="ZnM-wJ-iBG" secondAttribute="top" id="7Ha-aj-gSb"/>
                                     <constraint firstItem="bSH-lc-2cR" firstAttribute="baseline" secondItem="zf6-aI-TXF" secondAttribute="baseline" id="8Zc-5E-Y6R"/>
                                     <constraint firstAttribute="height" constant="300" id="Jmr-rC-a1A"/>
                                     <constraint firstItem="zf6-aI-TXF" firstAttribute="centerX" secondItem="Uob-bS-Ddd" secondAttribute="centerX" priority="750" id="MTq-sN-n9f"/>
@@ -112,11 +129,12 @@
                                     <constraint firstItem="zf6-aI-TXF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4b-RO-Ryc" secondAttribute="leading" id="jpQ-cI-Hm3"/>
                                     <constraint firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" constant="90" id="nja-PI-TeT"/>
                                     <constraint firstItem="Uob-bS-Ddd" firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" id="sdM-cC-9Uv"/>
+                                    <constraint firstItem="zf6-aI-TXF" firstAttribute="leading" secondItem="1Dd-II-92q" secondAttribute="trailing" constant="8" id="xRM-8R-zaU"/>
                                     <constraint firstItem="bSH-lc-2cR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n9n-u4-Sme" secondAttribute="leading" constant="20" symbolic="YES" id="yEp-kC-IqW"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.30358714788732394" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,17 +164,19 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="actionGesture" destination="Gjb-u1-0AB" id="nab-xU-XT0"/>
                         <outlet property="bufferingIndocator" destination="Sti-Nb-A6T" id="tJ8-dQ-xfp"/>
                         <outlet property="cancelGesture" destination="Mao-0Z-rHK" id="aPU-aE-6Pt"/>
                         <outlet property="controlView" destination="n9n-u4-Sme" id="MCx-D9-XiT"/>
+                        <outlet property="leftActionIndicator" destination="1Dd-II-92q" id="KdQ-sN-VOg"/>
                         <outlet property="openingIndicator" destination="Qfy-C8-dbo" id="e4S-1Y-cQm"/>
-                        <outlet property="playGesture" destination="dPw-kB-jYe" id="GsZ-aM-I8C"/>
+                        <outlet property="playPauseGesture" destination="dPw-kB-jYe" id="GsZ-aM-I8C"/>
                         <outlet property="positionConstraint" destination="Yzt-Zh-yo4" id="zwx-S0-vuA"/>
                         <outlet property="positionLabel" destination="zf6-aI-TXF" id="BL6-sc-nej"/>
                         <outlet property="positionSliderConstraint" destination="heN-ho-mWE" id="FkZ-2Q-Iv4"/>
                         <outlet property="progressBar" destination="e4b-RO-Ryc" id="so6-eF-M3Q"/>
                         <outlet property="remainingLabel" destination="bSH-lc-2cR" id="H1k-ad-bUU"/>
-                        <outlet property="showGesture" destination="Gjb-u1-0AB" id="nab-xU-XT0"/>
+                        <outlet property="rightActionIndicator" destination="ZnM-wJ-iBG" id="AcJ-Qh-Ldn"/>
                         <outlet property="sliderGesture" destination="rSG-9P-yKm" id="UA4-kZ-sf7"/>
                         <outlet property="sliderLabel" destination="QpR-Gk-axt" id="SzV-kI-sHl"/>
                         <outlet property="sliderView" destination="L4d-Gl-D5Y" id="45k-LB-KpK"/>
@@ -164,10 +184,10 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gif-C2-90A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer enabled="NO" id="Gjb-u1-0AB">
-                    <pressTypeMask key="allowedPressTypes" upArrow="YES" downArrow="YES" leftArrow="YES" rightArrow="YES"/>
+                <tapGestureRecognizer id="Gjb-u1-0AB">
+                    <pressTypeMask key="allowedPressTypes" select="YES"/>
                     <connections>
-                        <action selector="showControl:" destination="WfO-Rv-1Kc" id="L0A-N0-3oC"/>
+                        <action selector="handleRemteSurfaceAction:" destination="WfO-Rv-1Kc" id="Ogx-tg-tCp"/>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="qL1-vC-X0o"/>
                     </connections>
                 </tapGestureRecognizer>
@@ -180,7 +200,6 @@
                     <pressTypeMask key="allowedPressTypes" playPause="YES"/>
                     <connections>
                         <action selector="togglePlay:" destination="WfO-Rv-1Kc" id="peZ-hq-fEJ"/>
-                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="B5k-eB-r9x"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer enabled="NO" id="Mao-0Z-rHK">

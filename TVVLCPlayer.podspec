@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
       'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h"
   }
-  s.resources = ["Resources/TVVLCPlayer.storyboard"]
+  s.resources = ["Resources/*.{storyboard,xcassets}"]
 
 #  s.preserve_path = 'Modules/*'
 #   s.xcconfig      = {

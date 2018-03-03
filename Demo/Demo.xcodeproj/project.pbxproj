@@ -163,11 +163,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-resources.sh",
 				"${PODS_ROOT}/../../Resources/TVVLCPlayer.storyboard",
+				"${PODS_ROOT}/../../Resources/Images.xcassets",
 				"${PODS_CONFIGURATION_BUILD_DIR}/TVVLCPlayer/TVVLCPlayer.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TVVLCPlayer.storyboardc",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Images.xcassets",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TVVLCPlayer.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
