@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WfO-Rv-1Kc">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="dark"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Player View Controller-->
+        <scene sceneID="niL-Xe-zdn">
+            <objects>
+                <viewController id="WfO-Rv-1Kc" customClass="VLCPlayerViewController" customModule="TVVLCPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="caD-M5-eGT"/>
+                        <viewControllerLayoutGuide type="bottom" id="XEy-5K-DaN"/>
+                    </layoutGuides>
+                    <view key="view" tag="1" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w7f-9P-vY6">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymh-Zh-rPV" userLabel="Video View">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                            </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Qfy-C8-dbo">
+                                <rect key="frame" x="928" y="508" width="64" height="64"/>
+                            </activityIndicatorView>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n9n-u4-Sme" userLabel="Control View" customClass="GradientView" customModule="TVVLCPlayer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="780" width="1920" height="300"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-8.40" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSH-lc-2cR" userLabel="remainingTimer">
+                                        <rect key="frame" x="1751" y="220" width="79" height="37"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e4b-RO-Ryc" customClass="ProgressBar" customModule="TVVLCPlayer" customModuleProvider="target">
+                                        <rect key="frame" x="90" y="200" width="1740" height="10"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="ATX-iI-fXq"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.40" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf6-aI-TXF" userLabel="positionLabel">
+                                        <rect key="frame" x="91" y="220" width="66" height="37"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <size key="shadowOffset" width="0.0" height="1"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uob-bS-Ddd" userLabel="Position">
+                                        <rect key="frame" x="123" y="200" width="2" height="10"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="2" id="5VG-GS-YKJ"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-Gl-D5Y" userLabel="Slider">
+                                        <rect key="frame" x="608" y="135" width="66" height="75"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qja-qQ-Q3i" userLabel="Slider Bar">
+                                                <rect key="frame" x="32" y="45" width="2" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="4Ey-Gu-0Yf"/>
+                                                    <constraint firstAttribute="width" constant="2" id="zfe-GT-Y5f"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpR-Gk-axt" userLabel="knobTimer">
+                                                <rect key="frame" x="0.0" y="0.0" width="66" height="37"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="1"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="QpR-Gk-axt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="L4d-Gl-D5Y" secondAttribute="leading" id="I14-6W-yyo"/>
+                                            <constraint firstItem="QpR-Gk-axt" firstAttribute="top" secondItem="L4d-Gl-D5Y" secondAttribute="top" id="Jne-E0-bR8"/>
+                                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="QpR-Gk-axt" secondAttribute="trailing" id="WEP-TB-Ygg"/>
+                                            <constraint firstItem="QpR-Gk-axt" firstAttribute="centerX" secondItem="Qja-qQ-Q3i" secondAttribute="centerX" id="Wgf-mm-70e"/>
+                                            <constraint firstItem="QpR-Gk-axt" firstAttribute="bottom" secondItem="Qja-qQ-Q3i" secondAttribute="top" constant="-8" id="fwk-6J-6DL"/>
+                                            <constraint firstAttribute="bottom" secondItem="Qja-qQ-Q3i" secondAttribute="bottom" id="rNX-ax-V0T"/>
+                                            <constraint firstItem="Qja-qQ-Q3i" firstAttribute="centerX" secondItem="L4d-Gl-D5Y" secondAttribute="centerX" id="tig-zz-4wp"/>
+                                        </constraints>
+                                    </view>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Sti-Nb-A6T">
+                                        <rect key="frame" x="171" y="219" width="40" height="40"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="bSH-lc-2cR" firstAttribute="trailing" secondItem="e4b-RO-Ryc" secondAttribute="trailing" id="5ea-qc-s2g"/>
+                                    <constraint firstItem="bSH-lc-2cR" firstAttribute="baseline" secondItem="zf6-aI-TXF" secondAttribute="baseline" id="8Zc-5E-Y6R"/>
+                                    <constraint firstAttribute="height" constant="300" id="Jmr-rC-a1A"/>
+                                    <constraint firstItem="zf6-aI-TXF" firstAttribute="centerX" secondItem="Uob-bS-Ddd" secondAttribute="centerX" priority="750" id="MTq-sN-n9f"/>
+                                    <constraint firstItem="L4d-Gl-D5Y" firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" id="Sz8-lb-Epl"/>
+                                    <constraint firstItem="e4b-RO-Ryc" firstAttribute="leading" secondItem="n9n-u4-Sme" secondAttribute="leading" constant="90" id="VV7-BG-CEd"/>
+                                    <constraint firstItem="Uob-bS-Ddd" firstAttribute="centerX" secondItem="e4b-RO-Ryc" secondAttribute="leading" constant="34" id="Yzt-Zh-yo4"/>
+                                    <constraint firstItem="bSH-lc-2cR" firstAttribute="top" secondItem="e4b-RO-Ryc" secondAttribute="bottom" constant="10" id="Zz4-da-uXj"/>
+                                    <constraint firstItem="Sti-Nb-A6T" firstAttribute="centerY" secondItem="zf6-aI-TXF" secondAttribute="centerY" id="b1L-Yj-dyU"/>
+                                    <constraint firstItem="Uob-bS-Ddd" firstAttribute="height" secondItem="e4b-RO-Ryc" secondAttribute="height" id="e06-L2-xVC"/>
+                                    <constraint firstItem="e4b-RO-Ryc" firstAttribute="centerX" secondItem="n9n-u4-Sme" secondAttribute="centerX" id="eEC-33-VhF"/>
+                                    <constraint firstItem="Sti-Nb-A6T" firstAttribute="leading" secondItem="zf6-aI-TXF" secondAttribute="trailing" constant="14" id="hYE-z5-HSR"/>
+                                    <constraint firstItem="L4d-Gl-D5Y" firstAttribute="centerX" secondItem="e4b-RO-Ryc" secondAttribute="leading" constant="551" id="heN-ho-mWE"/>
+                                    <constraint firstItem="zf6-aI-TXF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4b-RO-Ryc" secondAttribute="leading" id="jpQ-cI-Hm3"/>
+                                    <constraint firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" constant="90" id="nja-PI-TeT"/>
+                                    <constraint firstItem="Uob-bS-Ddd" firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" id="sdM-cC-9Uv"/>
+                                    <constraint firstItem="bSH-lc-2cR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="n9n-u4-Sme" secondAttribute="leading" constant="20" symbolic="YES" id="yEp-kC-IqW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.74801936619718312" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ymh-Zh-rPV" firstAttribute="top" secondItem="w7f-9P-vY6" secondAttribute="top" id="IpI-C2-rWv"/>
+                            <constraint firstAttribute="trailing" secondItem="ymh-Zh-rPV" secondAttribute="trailing" id="O5b-Go-0C0"/>
+                            <constraint firstAttribute="bottom" secondItem="ymh-Zh-rPV" secondAttribute="bottom" id="S7F-b0-gov"/>
+                            <constraint firstItem="n9n-u4-Sme" firstAttribute="leading" secondItem="w7f-9P-vY6" secondAttribute="leading" id="TXM-lj-faZ"/>
+                            <constraint firstItem="Qfy-C8-dbo" firstAttribute="centerY" secondItem="w7f-9P-vY6" secondAttribute="centerY" id="UTB-xP-mcz"/>
+                            <constraint firstAttribute="bottom" secondItem="n9n-u4-Sme" secondAttribute="bottom" id="UX4-Th-OgS"/>
+                            <constraint firstItem="Qfy-C8-dbo" firstAttribute="centerX" secondItem="w7f-9P-vY6" secondAttribute="centerX" id="hzq-4f-Skj"/>
+                            <constraint firstAttribute="trailing" secondItem="n9n-u4-Sme" secondAttribute="trailing" id="jc3-D1-DiF"/>
+                            <constraint firstItem="ymh-Zh-rPV" firstAttribute="leading" secondItem="w7f-9P-vY6" secondAttribute="leading" id="oio-1Z-zSh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="39a-qv-vfc"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Gjb-u1-0AB" appends="YES" id="jPm-cT-CdA"/>
+                            <outletCollection property="gestureRecognizers" destination="rSG-9P-yKm" appends="YES" id="SJx-99-r1j"/>
+                            <outletCollection property="gestureRecognizers" destination="Mao-0Z-rHK" appends="YES" id="GDh-Dd-v2k"/>
+                            <outletCollection property="gestureRecognizers" destination="dPw-kB-jYe" appends="YES" id="9IQ-JE-gXO"/>
+                            <outletCollection property="gestureRecognizers" destination="eJM-tY-j0Z" appends="YES" id="eaH-DB-rK2"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="bufferingIndocator" destination="Sti-Nb-A6T" id="tJ8-dQ-xfp"/>
+                        <outlet property="cancelGesture" destination="Mao-0Z-rHK" id="aPU-aE-6Pt"/>
+                        <outlet property="controlView" destination="n9n-u4-Sme" id="MCx-D9-XiT"/>
+                        <outlet property="openingIndicator" destination="Qfy-C8-dbo" id="e4S-1Y-cQm"/>
+                        <outlet property="playGesture" destination="dPw-kB-jYe" id="GsZ-aM-I8C"/>
+                        <outlet property="positionConstraint" destination="Yzt-Zh-yo4" id="zwx-S0-vuA"/>
+                        <outlet property="positionLabel" destination="zf6-aI-TXF" id="BL6-sc-nej"/>
+                        <outlet property="positionSliderConstraint" destination="heN-ho-mWE" id="FkZ-2Q-Iv4"/>
+                        <outlet property="progressBar" destination="e4b-RO-Ryc" id="so6-eF-M3Q"/>
+                        <outlet property="remainingLabel" destination="bSH-lc-2cR" id="H1k-ad-bUU"/>
+                        <outlet property="showGesture" destination="Gjb-u1-0AB" id="nab-xU-XT0"/>
+                        <outlet property="sliderGesture" destination="rSG-9P-yKm" id="UA4-kZ-sf7"/>
+                        <outlet property="sliderLabel" destination="QpR-Gk-axt" id="SzV-kI-sHl"/>
+                        <outlet property="sliderView" destination="L4d-Gl-D5Y" id="45k-LB-KpK"/>
+                        <outlet property="videoView" destination="ymh-Zh-rPV" id="amP-sp-RsD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gif-C2-90A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="Gjb-u1-0AB">
+                    <pressTypeMask key="allowedPressTypes" upArrow="YES" downArrow="YES" leftArrow="YES" rightArrow="YES"/>
+                    <connections>
+                        <action selector="showControl:" destination="WfO-Rv-1Kc" id="L0A-N0-3oC"/>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="qL1-vC-X0o"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer enabled="NO" cancelsTouchesInView="NO" minimumNumberOfTouches="1" id="rSG-9P-yKm">
+                    <connections>
+                        <action selector="changePosition:" destination="WfO-Rv-1Kc" id="EUU-dz-Rk7"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="dPw-kB-jYe">
+                    <pressTypeMask key="allowedPressTypes" playPause="YES"/>
+                    <connections>
+                        <action selector="togglePlay:" destination="WfO-Rv-1Kc" id="peZ-hq-fEJ"/>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="B5k-eB-r9x"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer enabled="NO" cancelsTouchesInView="NO" id="Mao-0Z-rHK">
+                    <pressTypeMask key="allowedPressTypes" menu="YES"/>
+                    <connections>
+                        <action selector="cancel:" destination="WfO-Rv-1Kc" id="EBL-7J-hEe"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer cancelsTouchesInView="NO" delaysTouchesEnded="NO" id="eJM-tY-j0Z">
+                    <pressTypeMask key="allowedPressTypes" rightArrow="YES"/>
+                    <connections>
+                        <action selector="fastForward:" destination="WfO-Rv-1Kc" id="Nf0-Xb-qd8"/>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="Kp0-Z4-JrN"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="8296" y="3081"/>
+        </scene>
+    </scenes>
+</document>

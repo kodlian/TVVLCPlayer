@@ -10,6 +10,11 @@
 		3F36E1AF204A8F0400478CE2 /* TVVLCPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F36E1A5204A8F0400478CE2 /* TVVLCPlayer.framework */; };
 		3F36E1B4204A8F0400478CE2 /* TVVLCPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36E1B3204A8F0400478CE2 /* TVVLCPlayerTests.swift */; };
 		3F36E1B6204A8F0400478CE2 /* TVVLCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F36E1A8204A8F0400478CE2 /* TVVLCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F36E1C3204A8F1200478CE2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36E1BF204A8F1200478CE2 /* GradientView.swift */; };
+		3F36E1C4204A8F1200478CE2 /* VLCPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36E1C0204A8F1200478CE2 /* VLCPlayerViewController.swift */; };
+		3F36E1C5204A8F1200478CE2 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36E1C1204A8F1200478CE2 /* ProgressBar.swift */; };
+		3F36E1C6204A8F1200478CE2 /* VLC+addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36E1C2204A8F1200478CE2 /* VLC+addition.swift */; };
+		3F36E1C8204A928F00478CE2 /* TVVLCPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F36E1C7204A928F00478CE2 /* TVVLCPlayer.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +34,11 @@
 		3F36E1AE204A8F0400478CE2 /* TVVLCPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TVVLCPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F36E1B3204A8F0400478CE2 /* TVVLCPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVVLCPlayerTests.swift; sourceTree = "<group>"; };
 		3F36E1B5204A8F0400478CE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F36E1BF204A8F1200478CE2 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		3F36E1C0204A8F1200478CE2 /* VLCPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewController.swift; sourceTree = "<group>"; };
+		3F36E1C1204A8F1200478CE2 /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		3F36E1C2204A8F1200478CE2 /* VLC+addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VLC+addition.swift"; sourceTree = "<group>"; };
+		3F36E1C7204A928F00478CE2 /* TVVLCPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TVVLCPlayer.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +63,7 @@
 		3F36E19B204A8F0400478CE2 = {
 			isa = PBXGroup;
 			children = (
-				3F36E1A7204A8F0400478CE2 /* TVVLCPlayer */,
+				3F36E1A7204A8F0400478CE2 /* Sources */,
 				3F36E1B2204A8F0400478CE2 /* TVVLCPlayerTests */,
 				3F36E1A6204A8F0400478CE2 /* Products */,
 			);
@@ -68,13 +78,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3F36E1A7204A8F0400478CE2 /* TVVLCPlayer */ = {
+		3F36E1A7204A8F0400478CE2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3F36E1BF204A8F1200478CE2 /* GradientView.swift */,
+				3F36E1C1204A8F1200478CE2 /* ProgressBar.swift */,
+				3F36E1C2204A8F1200478CE2 /* VLC+addition.swift */,
+				3F36E1C0204A8F1200478CE2 /* VLCPlayerViewController.swift */,
+				3F36E1C7204A928F00478CE2 /* TVVLCPlayer.storyboard */,
 				3F36E1A8204A8F0400478CE2 /* TVVLCPlayer.h */,
 				3F36E1A9204A8F0400478CE2 /* Info.plist */,
 			);
-			path = TVVLCPlayer;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		3F36E1B2204A8F0400478CE2 /* TVVLCPlayerTests */ = {
@@ -148,6 +163,7 @@
 				TargetAttributes = {
 					3F36E1A4204A8F0400478CE2 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					3F36E1AD204A8F0400478CE2 = {
@@ -179,6 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F36E1C8204A928F00478CE2 /* TVVLCPlayer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F36E1C3204A8F1200478CE2 /* GradientView.swift in Sources */,
+				3F36E1C6204A8F1200478CE2 /* VLC+addition.swift in Sources */,
+				3F36E1C5204A8F1200478CE2 /* ProgressBar.swift in Sources */,
+				3F36E1C4204A8F1200478CE2 /* VLCPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +353,7 @@
 		3F36E1BA204A8F0400478CE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -345,6 +367,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.TVVLCPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 			};
@@ -353,6 +376,7 @@
 		3F36E1BB204A8F0400478CE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +398,7 @@
 		3F36E1BD204A8F0400478CE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DQT98LJ77;
 				INFOPLIST_FILE = TVVLCPlayerTests/Info.plist;
@@ -388,6 +413,7 @@
 		3F36E1BE204A8F0400478CE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9DQT98LJ77;
 				INFOPLIST_FILE = TVVLCPlayerTests/Info.plist;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TVVLCKit/TVVLCKit.h>
 
 //! Project version number for TVVLCPlayer.
 FOUNDATION_EXPORT double TVVLCPlayerVersionNumber;
