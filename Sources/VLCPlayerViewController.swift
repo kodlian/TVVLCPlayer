@@ -13,6 +13,7 @@ public class VLCPlayerViewController: UIViewController {
     public static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
         let storyboard = UIStoryboard(name: "TVVLCPlayer", bundle: Bundle(for: VLCPlayerViewController.self))
         let controller = storyboard.instantiateInitialViewController() as! VLCPlayerViewController
+        controller.media = media
         return controller
     }
   

@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary          = "A powerfull video player"
 
   s.description      = <<-DESC
-  TVVLCPlayer lets you integrate easylily a powerfull video player with control views to your tv apps.
+  TVVLCPlayer lets you integrate easylily a powerfull video player with playback control views to your tv apps.
    Based on TVVLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
                        DESC
   s.static_framework = true
@@ -28,11 +28,4 @@ Pod::Spec.new do |s|
       'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h"
   }
   s.resources = ["Resources/*.{storyboard,xcassets}"]
-
-#  s.preserve_path = 'Modules/*'
-#   s.xcconfig      = {
-##    'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2',
-#    'SWIFT_INCLUDE_PATHS' => '$(SRCROOT)/TVVLCPlayer/Modules'
-#}
-
 end

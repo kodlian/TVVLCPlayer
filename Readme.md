@@ -2,49 +2,44 @@
 
 ![TVVLCPlayer ](https://raw.githubusercontent.com/kodlian/Albatross/master/thumbnail.jpg)
 
-TVVLCPlayer lets you integrate easylily a powerfull video player with control views to your tv apps. Based on [TVVLCKit]()https://code.videolan.org/videolan/VLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
+TVVLCPlayer lets you integrate easylily a powerfull video player with playback control views to your tv apps. Based on [TVVLCKit]()https://code.videolan.org/videolan/VLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
 
 ## Features
 - Native look
 - Scrubbling
 - Jump and scroll
 
+## Installation
+```ruby
+# CocoaPods
+pod "TVVLCPlayer", "~> 1.0"
+```
+
 ## Usage
 ### Storyboard
-In your storyboard add a reference to the VLCPlayerViewController from TVVLCPlayer module
-
+In your storyboard add a reference to the VLCPlayer storyboard from the org.cocoapods.TVVLCPlayer bundle.
+Then set a media on the playerViewController:
 ```swift
- override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+import TVVLCKit
+...
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if let playerViewController = segue.destination as? VLCPlayerViewController {
             let media: VLCMedia = ...
             playerViewController.media = media
       }
- }
+}
 
 ```
 
 ### In code
 ```swift
+import TVVLCKit
+...
 let media: VLCMedia = ...
-let playerViewController = VLCPlayerViewController()
-playerViewController.media = media
-```
-
-## Installation
-
-```ruby
-# CocoaPods 
-pod "TVVLCPlayer", "~> 1.0"
-
-# Carthage
-github "kodlian/TVVLCPlayer" ~> 1.0
+let playerViewController = VLCPlayerViewController.instantiate(media: media)
 ```
 
 ## Todo
 - [ ] Audio channels selector
 - [ ] Subtitles selector
 - [ ] Info views
-
-
-
-
