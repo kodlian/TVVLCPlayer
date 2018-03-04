@@ -39,6 +39,8 @@ public class VLCPlayerViewController: UIViewController {
     public var media: VLCMedia? {
         didSet {
             player.media = media
+            isOpening = true
+            player.play()
         }
     }
     
@@ -46,6 +48,20 @@ public class VLCPlayerViewController: UIViewController {
         didSet {
             oldValue?.isEnabled = false
             positionController?.isEnabled = true
+        }
+    }
+    
+    private var isOpening: Bool = false {
+        didSet {
+            guard self.viewIfLoaded != nil else {
+                return
+            }
+            if isOpening {
+                openingIndicator.startAnimating()
+            } else {
+                openingIndicator.stopAnimating()
+            }
+            self.setUpPositionController()
         }
     }
     
@@ -180,7 +196,7 @@ extension VLCPlayerViewController {
     }
     
     fileprivate func setUpPositionController() {
-        guard player.isSeekable  else {
+        guard player.isSeekable && !isOpening  else {
             positionController = nil
             return
         }
@@ -233,7 +249,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
-        openingIndicator.stopAnimating()
+        isOpening = false
         isBuffering = false
 
         updateViews(with: player.time)

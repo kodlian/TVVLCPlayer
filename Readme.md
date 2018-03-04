@@ -5,9 +5,9 @@
 TVVLCPlayer lets you integrate easylily a powerfull video player with playback control views to your tv apps. Based on [TVVLCKit]()https://code.videolan.org/videolan/VLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
 
 ## Features
-- Native look
-- Scrubbling
-- Jump and scroll
+- Native look & feel
+- Scrubbling with remote surface touch
+- Jump, fast forward and rewind
 
 ## Installation
 ```ruby
