@@ -17,10 +17,10 @@ pod "TVVLCPlayer", "~> 1.0"
 
 ## Usage
 ### Storyboard
-In your storyboard add a reference to the VLCPlayer storyboard from the org.cocoapods.TVVLCPlayer bundle.
+In your storyboard add a reference to the `VLCPlayer` storyboard from the `org.cocoapods.TVVLCPlayer` bundle.
 Then set a media on the playerViewController:
 ```swift
-import TVVLCKit
+import TVVLCPlayer
 ...
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if let playerViewController = segue.destination as? VLCPlayerViewController {
@@ -33,7 +33,7 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
 ### In code
 ```swift
-import TVVLCKit
+import TVVLCPlayer
 ...
 let media: VLCMedia = ...
 let playerViewController = VLCPlayerViewController.instantiate(media: media)
