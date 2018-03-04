@@ -90,8 +90,9 @@
                                             <constraint firstItem="Qja-qQ-Q3i" firstAttribute="centerX" secondItem="L4d-Gl-D5Y" secondAttribute="centerX" id="tig-zz-4wp"/>
                                         </constraints>
                                     </view>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Sti-Nb-A6T">
-                                        <rect key="frame" x="171" y="219" width="40" height="40"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Sti-Nb-A6T">
+                                        <rect key="frame" x="165" y="229" width="20" height="20"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZnM-wJ-iBG">
                                         <rect key="frame" x="165" y="219" width="40" height="40"/>
@@ -124,7 +125,7 @@
                                     <constraint firstItem="Sti-Nb-A6T" firstAttribute="centerY" secondItem="zf6-aI-TXF" secondAttribute="centerY" id="b1L-Yj-dyU"/>
                                     <constraint firstItem="Uob-bS-Ddd" firstAttribute="height" secondItem="e4b-RO-Ryc" secondAttribute="height" id="e06-L2-xVC"/>
                                     <constraint firstItem="e4b-RO-Ryc" firstAttribute="centerX" secondItem="n9n-u4-Sme" secondAttribute="centerX" id="eEC-33-VhF"/>
-                                    <constraint firstItem="Sti-Nb-A6T" firstAttribute="leading" secondItem="zf6-aI-TXF" secondAttribute="trailing" constant="14" id="hYE-z5-HSR"/>
+                                    <constraint firstItem="Sti-Nb-A6T" firstAttribute="leading" secondItem="zf6-aI-TXF" secondAttribute="trailing" constant="8" id="hYE-z5-HSR"/>
                                     <constraint firstItem="L4d-Gl-D5Y" firstAttribute="centerX" secondItem="e4b-RO-Ryc" secondAttribute="leading" constant="551" id="heN-ho-mWE"/>
                                     <constraint firstItem="zf6-aI-TXF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="e4b-RO-Ryc" secondAttribute="leading" id="jpQ-cI-Hm3"/>
                                     <constraint firstAttribute="bottom" secondItem="e4b-RO-Ryc" secondAttribute="bottom" constant="90" id="nja-PI-TeT"/>
@@ -157,14 +158,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="39a-qv-vfc"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="Gjb-u1-0AB" appends="YES" id="jPm-cT-CdA"/>
                             <outletCollection property="gestureRecognizers" destination="rSG-9P-yKm" appends="YES" id="SJx-99-r1j"/>
                             <outletCollection property="gestureRecognizers" destination="Mao-0Z-rHK" appends="YES" id="GDh-Dd-v2k"/>
                             <outletCollection property="gestureRecognizers" destination="dPw-kB-jYe" appends="YES" id="9IQ-JE-gXO"/>
+                            <outletCollection property="gestureRecognizers" destination="evZ-3a-6GS" appends="YES" id="Czi-me-D1K"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="actionGesture" destination="Gjb-u1-0AB" id="nab-xU-XT0"/>
+                        <outlet property="actionGesture" destination="evZ-3a-6GS" id="6Ic-aU-aEY"/>
                         <outlet property="bufferingIndicator" destination="Sti-Nb-A6T" id="tJ8-dQ-xfp"/>
                         <outlet property="cancelGesture" destination="Mao-0Z-rHK" id="aPU-aE-6Pt"/>
                         <outlet property="openingIndicator" destination="Qfy-C8-dbo" id="e4S-1Y-cQm"/>
@@ -182,6 +183,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gif-C2-90A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <gestureRecognizer id="evZ-3a-6GS" customClass="LongPressGestureRecogniser" customModule="TVVLCPlayer" customModuleProvider="target">
+                    <connections>
+                        <action selector="click:" destination="WfO-Rv-1Kc" id="Akg-74-X7c"/>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="6dv-DC-Dg2"/>
+                    </connections>
+                </gestureRecognizer>
                 <customObject id="nNO-Af-76t" customClass="ScrubbingPositionController" customModule="TVVLCPlayer" customModuleProvider="target">
                     <connections>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="PAM-AQ-SgG"/>
@@ -200,13 +207,6 @@
                         <outlet property="rightActionIndicator" destination="ZnM-wJ-iBG" id="5g2-nE-Usd"/>
                     </connections>
                 </customObject>
-                <tapGestureRecognizer id="Gjb-u1-0AB" userLabel="Select Gesture">
-                    <pressTypeMask key="allowedPressTypes" select="YES"/>
-                    <connections>
-                        <action selector="click:" destination="WfO-Rv-1Kc" id="55H-KO-suk"/>
-                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="qL1-vC-X0o"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="rSG-9P-yKm">
                     <connections>
                         <action selector="scrub:" destination="nNO-Af-76t" id="zFz-wQ-Mc6"/>

@@ -29,7 +29,7 @@ public class VLCPlayerViewController: UIViewController {
     @IBOutlet weak var bufferingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var openingIndicator: UIActivityIndicatorView!
     
-    @IBOutlet var actionGesture: UITapGestureRecognizer!
+    @IBOutlet var actionGesture: LongPressGestureRecogniser!
     @IBOutlet var playPauseGesture: UITapGestureRecognizer!
     @IBOutlet var cancelGesture: UITapGestureRecognizer!
     
@@ -103,7 +103,7 @@ public class VLCPlayerViewController: UIViewController {
  
 
     // MARK: IB Actions
-    @IBAction func click(_ sender: Any) {
+    @IBAction func click(_ sender: LongPressGestureRecogniser) {
         positionController?.click(sender)
     }
     @IBAction func playOrPause(_ sender: Any) {
@@ -203,6 +203,7 @@ extension VLCPlayerViewController {
     }
     fileprivate func setUpGestures() {
         playPauseGesture.isEnabled = player.state != .opening && player.state != .stopped
+        actionGesture.isEnabled = playPauseGesture.isEnabled
     }
     
     fileprivate func handlePlaybackControlVisibility() {
@@ -237,9 +238,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
         updateViews(with: player.time)
     }
-    
 }
-
 
 // MARK: - Scrubbling Delegate
 extension VLCPlayerViewController: ScrubbingPositionControllerDelegate {
@@ -263,12 +262,18 @@ extension VLCPlayerViewController: RemoteActionPositionControllerDelegate {
         showPlaybackControl()
 
         switch action {
-        case .forward:
+        case .fastForward:
+            player.fastForward(atRate: 20.0)
+        case .rewind:
+            player.rewind(atRate: 20)
+        case .jumpForward:
             player.jumpForward(30)
-        case .backward:
+        case .jumpBackward:
             player.jumpBackward(30)
-        case .neutral:
+        case .pause:
             player.pause()
+        case .reset:
+            player.fastForward(atRate: 1.0)
         }
     }
 }

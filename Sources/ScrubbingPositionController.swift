@@ -108,8 +108,12 @@ class ScrubbingPositionController: NSObject, PositionController {
         delegate?.scrubbingPositionController(self, didSelectTime: selectedTime)
     }
     
-    func click(_ sender: Any) {
+    func click(_ sender: LongPressGestureRecogniser) {
+        guard sender.state == .ended && !sender.isLongPress else {
+            return
+        }
         self.playOrPause(sender)
+
     }
     
     // MARK: Movement
