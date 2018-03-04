@@ -166,12 +166,13 @@ extension VLCPlayerViewController {
     }
     
     fileprivate func setUpPositionController() {
-        guard player.isSeekable else {
+        guard player.isSeekable  else {
             positionController = nil
             return
         }
         
         if player.state == .paused {
+            scrubbingPositionController.selectedTime = player.time
             positionController = scrubbingPositionController
         } else {
             positionController = remoteActionPositionController

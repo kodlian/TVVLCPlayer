@@ -184,6 +184,7 @@
                 <customObject id="nNO-Af-76t" customClass="ScrubbingPositionController" customModule="TVVLCPlayer" customModuleProvider="target">
                     <connections>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="PAM-AQ-SgG"/>
+                        <outlet property="scrubbingBar" destination="Qja-qQ-Q3i" id="2WE-ek-j1a"/>
                         <outlet property="scrubbingGesture" destination="rSG-9P-yKm" id="ekE-RE-SRL"/>
                         <outlet property="scrubbingLabel" destination="QpR-Gk-axt" id="vec-bq-tWh"/>
                         <outlet property="scrubbingPositionConstraint" destination="heN-ho-mWE" id="dn3-jh-UTo"/>

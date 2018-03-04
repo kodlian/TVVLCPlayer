@@ -20,6 +20,7 @@ class ScrubbingPositionController: NSObject, PositionController {
     @IBOutlet var scrubbingGesture: UIPanGestureRecognizer!
     @IBOutlet weak var transportBar: ProgressBar!
     @IBOutlet weak var scrubbingLabel: UILabel!
+    @IBOutlet weak var scrubbingBar: UIView!
     @IBOutlet weak var scrubbingView: UIView!
     @IBOutlet weak var scrubbingPositionConstraint: NSLayoutConstraint!
     @IBOutlet weak var delegate: ScrubbingPositionControllerDelegate?
@@ -29,16 +30,13 @@ class ScrubbingPositionController: NSObject, PositionController {
         didSet {
             decelerateTimer?.invalidate()
             scrubbingGesture.isEnabled = isEnabled
-            selectedTime = player.time
-            
-            scrubbingView.isHidden = !isEnabled
-
+    
+            DispatchQueue.main.async {
+                self.toggleScrubbingViewVisibility()
+            }
         }
     }
-    
-    private var lastTranslation: CGFloat = 0.0
-    private var decelerateTimer: Timer?
-    private var selectedTime: VLCTime = VLCTime() { // Animate scrubbing view hidden
+    var selectedTime: VLCTime = VLCTime() { // Animate scrubbing view hidden
         didSet {
             guard let totalTime = player.totalTime else {
                 fatalError("ScrubbingPositionController supports only video with a total time")
@@ -48,20 +46,35 @@ class ScrubbingPositionController: NSObject, PositionController {
             let totalTimeValue = totalTime.value.doubleValue
             scrubbingPositionConstraint.constant = round(CGFloat(value / totalTimeValue) * transportBar.bounds.width)
             scrubbingLabel.text = selectedTime.stringValue
-            // remainingLabel.text = (totalTime - selectedTime).stringValue
-            
-            
-            //        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            //            if activateSlider {
-            //                self.sliderView.isHidden = false
-            //            } else {
-            //                self.sliderView.isHidden = true
-            //            }
-            //        })
+        }
+    }
+    
+    private var lastTranslation: CGFloat = 0.0
+    private var decelerateTimer: Timer?
+
+    // MARK:Visibility
+    func toggleScrubbingViewVisibility() {
+        let transform = CGAffineTransform(translationX: 0, y: scrubbingBar.bounds.height).scaledBy(x: 0.1, y: 0.1)
+        print(isEnabled)
+
+        if isEnabled && scrubbingView.isHidden {
+            scrubbingView.isHidden = false
+            scrubbingView.transform = transform
+            UIView.animate(withDuration: 0.2, animations: {
+                self.scrubbingView.transform = CGAffineTransform.identity
+            })
+        } else if !isEnabled && !scrubbingView.isHidden {
+            scrubbingView.transform = CGAffineTransform.identity
+            UIView.animate(withDuration: 0.2, animations: {
+                self.scrubbingView.transform = transform
+            }) { _ in
+                self.scrubbingView.isHidden = true
+            }
         }
     }
     
     // MARK: IB Actions
+    let surfaceTouchScreenFactor: CGFloat = 1 / 8
     @IBAction func scrub(_ sender: UIPanGestureRecognizer) {
         decelerateTimer?.invalidate()
         
@@ -71,8 +84,8 @@ class ScrubbingPositionController: NSObject, PositionController {
             fallthrough
         case .ended:
             let velocity = sender.velocity(in: nil)
-            let factor = abs(velocity.x / transportBar.bounds.width)
-            moveByDeceleratingPosition(by: lastTranslation * factor / 8)
+            let factor = abs(velocity.x / transportBar.bounds.width * surfaceTouchScreenFactor)
+            moveByDeceleratingPosition(by: factor * lastTranslation * surfaceTouchScreenFactor)
             lastTranslation = 0.0
             
         case .began:
@@ -80,7 +93,7 @@ class ScrubbingPositionController: NSObject, PositionController {
             
         case .changed:
             let translation = sender.translation(in: nil)
-            movePosition(by: (translation.x - lastTranslation) / 8)
+            movePosition(to: scrubbingPositionConstraint.constant + (translation.x - lastTranslation) * surfaceTouchScreenFactor)
             lastTranslation = translation.x
             
         default:
@@ -100,21 +113,31 @@ class ScrubbingPositionController: NSObject, PositionController {
     }
     
     // MARK: Movement
+    let numberOfFrames: CGFloat = 100
     private func moveByDeceleratingPosition(by translation: CGFloat) {
         decelerateTimer?.invalidate()
         if abs(translation) > 1 {
-            decelerateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { (timer: Timer) in
-                self.movePosition(by: translation / 64)
-                self.moveByDeceleratingPosition(by: translation * 0.9)
+            var frame: CGFloat = 0
+            
+            print("change \(translation)")
+            let startPosition = scrubbingPositionConstraint.constant
+            decelerateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { (timer: Timer) in
+                let position = easeOut(time: frame, change: translation, startPosition: startPosition, duration: self.numberOfFrames)
+                frame += 1
+                self.movePosition(to: position)
+                
+                if frame > self.numberOfFrames {
+                      self.decelerateTimer?.invalidate()
+                }
             }
         }
     }
     
-    private func movePosition(by offset: CGFloat) {
+    private func movePosition(to position: CGFloat) {
         guard let totalTime = player?.totalTime else {
             return
         }
-        var newPosition = scrubbingPositionConstraint.constant + offset
+        var newPosition = position
         if newPosition < 0 {
             newPosition = 0
         } else if newPosition > transportBar.bounds.width {
@@ -125,9 +148,11 @@ class ScrubbingPositionController: NSObject, PositionController {
         selectedTime = time
         delegate?.scrubbingPositionController(self, didScrubToTime: selectedTime)
     }
-    
-    
-    
-    
-    
+}
+
+// MARK: EaseOut function
+func easeOut(time: CGFloat, change: CGFloat, startPosition: CGFloat, duration: CGFloat) -> CGFloat {
+    var t: CGFloat = time / duration;
+    t -= 1
+    return change * (t*t*t + 1) + startPosition
 }
