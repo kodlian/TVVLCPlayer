@@ -131,7 +131,7 @@ public class VLCPlayerViewController: UIViewController {
     
     private func autoHideControl() {
         playbackControlHideTimer?.invalidate()
-        playbackControlHideTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+        playbackControlHideTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
             self.hideControl()
         }
     }
@@ -224,6 +224,10 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         setUpPositionController()
         animateIndicatorsIfNecessary()
         handlePlaybackControlVisibility()
+        
+        if player.state == .ended || player.state == .error || player.state == .stopped {
+            dismiss(animated: true)
+        }
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
