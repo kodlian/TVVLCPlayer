@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Player View Controller-->
+        <!--PlayerViewController-->
         <scene sceneID="niL-Xe-zdn">
             <objects>
-                <viewController id="WfO-Rv-1Kc" customClass="VLCPlayerViewController" customModule="TVVLCPlayer" sceneMemberID="viewController">
+                <viewController id="WfO-Rv-1Kc" userLabel="PlayerViewController" customClass="VLCPlayerViewController" customModule="TVVLCPlayer" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="caD-M5-eGT"/>
                         <viewControllerLayoutGuide type="bottom" id="XEy-5K-DaN"/>
@@ -61,10 +61,10 @@
                                             <constraint firstAttribute="width" constant="2" id="5VG-GS-YKJ"/>
                                         </constraints>
                                     </view>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-Gl-D5Y" userLabel="Slider">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4d-Gl-D5Y" userLabel="Scrubbing View">
                                         <rect key="frame" x="608" y="135" width="66" height="75"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qja-qQ-Q3i" userLabel="Slider Bar">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qja-qQ-Q3i" userLabel="Indicator">
                                                 <rect key="frame" x="32" y="45" width="2" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -72,7 +72,7 @@
                                                     <constraint firstAttribute="width" constant="2" id="zfe-GT-Y5f"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpR-Gk-axt" userLabel="knobTimer">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.40" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QpR-Gk-axt" userLabel="Label">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="37"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -165,41 +165,55 @@
                     </view>
                     <connections>
                         <outlet property="actionGesture" destination="Gjb-u1-0AB" id="nab-xU-XT0"/>
-                        <outlet property="bufferingIndocator" destination="Sti-Nb-A6T" id="tJ8-dQ-xfp"/>
+                        <outlet property="bufferingIndicator" destination="Sti-Nb-A6T" id="tJ8-dQ-xfp"/>
                         <outlet property="cancelGesture" destination="Mao-0Z-rHK" id="aPU-aE-6Pt"/>
-                        <outlet property="controlView" destination="n9n-u4-Sme" id="MCx-D9-XiT"/>
-                        <outlet property="leftActionIndicator" destination="1Dd-II-92q" id="KdQ-sN-VOg"/>
                         <outlet property="openingIndicator" destination="Qfy-C8-dbo" id="e4S-1Y-cQm"/>
                         <outlet property="playPauseGesture" destination="dPw-kB-jYe" id="GsZ-aM-I8C"/>
+                        <outlet property="playbackControlView" destination="n9n-u4-Sme" id="Ebc-ib-gIp"/>
                         <outlet property="positionConstraint" destination="Yzt-Zh-yo4" id="zwx-S0-vuA"/>
                         <outlet property="positionLabel" destination="zf6-aI-TXF" id="BL6-sc-nej"/>
-                        <outlet property="positionSliderConstraint" destination="heN-ho-mWE" id="FkZ-2Q-Iv4"/>
-                        <outlet property="progressBar" destination="e4b-RO-Ryc" id="so6-eF-M3Q"/>
                         <outlet property="remainingLabel" destination="bSH-lc-2cR" id="H1k-ad-bUU"/>
-                        <outlet property="rightActionIndicator" destination="ZnM-wJ-iBG" id="AcJ-Qh-Ldn"/>
-                        <outlet property="sliderGesture" destination="rSG-9P-yKm" id="UA4-kZ-sf7"/>
-                        <outlet property="sliderLabel" destination="QpR-Gk-axt" id="SzV-kI-sHl"/>
-                        <outlet property="sliderView" destination="L4d-Gl-D5Y" id="45k-LB-KpK"/>
+                        <outlet property="remoteActionPositionController" destination="1YH-10-II6" id="FE9-ZI-ION"/>
+                        <outlet property="scrubbingLabel" destination="QpR-Gk-axt" id="zs6-nM-4SZ"/>
+                        <outlet property="scrubbingPositionController" destination="nNO-Af-76t" id="7K2-9A-7F0"/>
+                        <outlet property="transportBar" destination="e4b-RO-Ryc" id="ZgE-y8-quK"/>
                         <outlet property="videoView" destination="ymh-Zh-rPV" id="amP-sp-RsD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gif-C2-90A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Gjb-u1-0AB">
+                <customObject id="nNO-Af-76t" customClass="ScrubbingPositionController" customModule="TVVLCPlayer" customModuleProvider="target">
+                    <connections>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="PAM-AQ-SgG"/>
+                        <outlet property="scrubbingGesture" destination="rSG-9P-yKm" id="ekE-RE-SRL"/>
+                        <outlet property="scrubbingLabel" destination="QpR-Gk-axt" id="vec-bq-tWh"/>
+                        <outlet property="scrubbingPositionConstraint" destination="heN-ho-mWE" id="dn3-jh-UTo"/>
+                        <outlet property="scrubbingView" destination="L4d-Gl-D5Y" id="Fid-eF-yxz"/>
+                        <outlet property="transportBar" destination="e4b-RO-Ryc" id="Nit-o9-s23"/>
+                    </connections>
+                </customObject>
+                <customObject id="1YH-10-II6" customClass="RemoteActionPositionController" customModule="TVVLCPlayer" customModuleProvider="target">
+                    <connections>
+                        <outlet property="delegate" destination="WfO-Rv-1Kc" id="wPN-BX-e1K"/>
+                        <outlet property="leftActionIndicator" destination="1Dd-II-92q" id="Ege-NU-Vgb"/>
+                        <outlet property="rightActionIndicator" destination="ZnM-wJ-iBG" id="5g2-nE-Usd"/>
+                    </connections>
+                </customObject>
+                <tapGestureRecognizer id="Gjb-u1-0AB" userLabel="Select Gesture">
                     <pressTypeMask key="allowedPressTypes" select="YES"/>
                     <connections>
-                        <action selector="handleRemteSurfaceAction:" destination="WfO-Rv-1Kc" id="Ogx-tg-tCp"/>
+                        <action selector="click:" destination="WfO-Rv-1Kc" id="55H-KO-suk"/>
                         <outlet property="delegate" destination="WfO-Rv-1Kc" id="qL1-vC-X0o"/>
                     </connections>
                 </tapGestureRecognizer>
                 <panGestureRecognizer enabled="NO" minimumNumberOfTouches="1" id="rSG-9P-yKm">
                     <connections>
-                        <action selector="changePosition:" destination="WfO-Rv-1Kc" id="EUU-dz-Rk7"/>
+                        <action selector="scrub:" destination="nNO-Af-76t" id="zFz-wQ-Mc6"/>
                     </connections>
                 </panGestureRecognizer>
                 <tapGestureRecognizer enabled="NO" id="dPw-kB-jYe">
                     <pressTypeMask key="allowedPressTypes" playPause="YES"/>
                     <connections>
-                        <action selector="togglePlay:" destination="WfO-Rv-1Kc" id="peZ-hq-fEJ"/>
+                        <action selector="playOrPause:" destination="WfO-Rv-1Kc" id="h8V-bp-Vyi"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer enabled="NO" id="Mao-0Z-rHK">

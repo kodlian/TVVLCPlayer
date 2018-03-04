@@ -15,40 +15,34 @@ public class VLCPlayerViewController: UIViewController {
         let controller = storyboard.instantiateInitialViewController() as! VLCPlayerViewController
         return controller
     }
-    
-//    enum State {
-//        case play(controlDisplayed: Bool)
-//        case paused(sliderTime: VLCTime)
-//    }
-//
-//    Class that manage slider, class that manage surface control,
-    
-    
-    
+  
     @IBOutlet var videoView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var remainingLabel: UILabel!
-    @IBOutlet weak var sliderLabel: UILabel!
-    @IBOutlet weak var sliderView: UIView!
-    @IBOutlet weak var progressBar: ProgressBar!
-    @IBOutlet weak var rightActionIndicator: UIImageView!
-    @IBOutlet weak var leftActionIndicator: UIImageView!
+    @IBOutlet weak var transportBar: ProgressBar!
+    @IBOutlet weak var scrubbingLabel: UILabel!
+    @IBOutlet weak var playbackControlView: GradientView!
     
-    @IBOutlet weak var controlView: GradientView!
     @IBOutlet weak var positionConstraint: NSLayoutConstraint!
-    @IBOutlet weak var positionSliderConstraint: NSLayoutConstraint!
-    @IBOutlet weak var bufferingIndocator: UIActivityIndicatorView!
+    @IBOutlet weak var bufferingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var openingIndicator: UIActivityIndicatorView!
     
     @IBOutlet var actionGesture: UITapGestureRecognizer!
     @IBOutlet var playPauseGesture: UITapGestureRecognizer!
-    @IBOutlet var sliderGesture: UIPanGestureRecognizer!
     @IBOutlet var cancelGesture: UITapGestureRecognizer!
+    
+    @IBOutlet var scrubbingPositionController: ScrubbingPositionController!
+    @IBOutlet var remoteActionPositionController: RemoteActionPositionController!
+
+    var positionController: PositionController? {
+        didSet {
+            oldValue?.isEnabled = false
+            positionController?.isEnabled = true
+        }
+    }
     
     public var url: URL! = URL(string: "https://upload.wikimedia.org/wikipedia/commons/8/88/Big_Buck_Bunny_alt.webm")!
     let player = VLCMediaPlayer()
-    var sliderTime: VLCTime?
-    var remoteActionController: RemoteSurfaceActionController?
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
@@ -60,35 +54,20 @@ public class VLCPlayerViewController: UIViewController {
         player.delegate = self
         player.drawable = videoView
         player.play()
-        controlView.isHidden = true
+        playbackControlView.isHidden = true
         openingIndicator.startAnimating()
 
         let font = UIFont.monospacedDigitSystemFont(ofSize: 30, weight: UIFont.Weight.medium)
         remainingLabel.font = font
         positionLabel.font = font
-        sliderLabel.font = font
+        scrubbingLabel.font = font
         
+        scrubbingPositionController.player = player
         
-        remoteActionController = RemoteSurfaceActionController { action in
-           // print(action)
-            self.showControl(self)
-            self.autoHideControl()
-
-            switch action {
-            case .forward:
-                self.leftActionIndicator.image = nil
-                self.rightActionIndicator.image = action.image
-
-            case .backward:
-                self.leftActionIndicator.image = action.image
-                self.rightActionIndicator.image = nil
-
-            case .show:
-                self.leftActionIndicator.image = nil
-                self.rightActionIndicator.image = nil
-            }
-            
-        }
+        setUpGestures()
+        setUpPositionController()
+        updateViews(with: player.time)
+        animateIndicatorsIfNecessary()
     }
     
     deinit {
@@ -101,191 +80,175 @@ public class VLCPlayerViewController: UIViewController {
     }
  
 
-    // MARK: Slider
-    var lastTranslation: CGFloat = 0.0
-    @IBAction func changePosition(_ sender: UIPanGestureRecognizer) {
-        decelerateTimer?.invalidate()
-
-        switch sender.state {
-        case .cancelled:
-            sliderTime = nil
-            fallthrough
-        case .ended:
-            let velocity = sender.velocity(in: view)
-            let factor = abs(velocity.x / progressBar.bounds.width)
-            moveByDeceleratingSliderPosition(by: lastTranslation * factor / 8)
-            lastTranslation = 0.0
-
-        case .began:
-            fallthrough
-            
-        case .changed:
-            let translation = sender.translation(in: view)
-            moveSliderPosition(by: (translation.x - lastTranslation) / 8)
-            lastTranslation = translation.x
-            
-        default:
-            return
-        }
+    // MARK: IB Actions
+    @IBAction func click(_ sender: Any) {
+        positionController?.click(sender)
     }
-    var decelerateTimer: Timer?
-    func moveByDeceleratingSliderPosition(by translation: CGFloat) {
-        decelerateTimer?.invalidate()
-        if abs(translation) > 1 {
-            decelerateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { (timer: Timer) in
-                self.moveSliderPosition(by: translation / 64)
-                self.moveByDeceleratingSliderPosition(by: translation * 0.9)
-            }
-        }
-    }
-    
-    func moveSliderPosition(by offset: CGFloat) {
-        guard let totalTime = player.totalTime, player.state == .paused else {
-            return
-        }
-        var newPosition = positionSliderConstraint.constant + offset
-        if newPosition < 0 {
-            newPosition = 0
-        } else if newPosition > progressBar.bounds.width {
-            newPosition = progressBar.bounds.width
-        }
-        
-        let time = totalTime * Double(newPosition / progressBar.bounds.width)
-        positionSliderConstraint.constant = newPosition
-        sliderTime = time
-        sliderLabel.text = time.stringValue
-        remainingLabel.text = (totalTime - time).stringValue
-    }
-    
-    // MARK: Action
-    @IBAction func togglePlay(_ sender: Any) {
-        if player.isPlaying {
-            player.pause()
-            showControl(sender)
-            
-        } else {
-            if let time = sliderTime {
-                player.time = time
-                positionConstraint.constant = positionSliderConstraint.constant
-                positionLabel.text = time.stringValue
-                remainingLabel.isHidden = positionSliderConstraint.constant + progressBar.frame.minX  > remainingLabel.frame.minX - 60
-
-            }
-            if player.state == .stopped {
-                player.time = VLCTime(int: 0)
-            }
-            sliderTime = nil
-            player.play()
-            autoHideControl()
-        }
+    @IBAction func playOrPause(_ sender: Any) {
+        positionController?.playOrPause(sender)
     }
     
     // MARK: Control
-    var timer: Timer?
-    @IBAction func showControl(_ sender: Any) {
-        timer?.invalidate()
-
-        guard self.controlView.isHidden else {
+    var playbackControlHideTimer: Timer?
+    public func showPlaybackControl() {
+        playbackControlHideTimer?.invalidate()
+        if player.state != .paused {
+            autoHideControl()
+        }
+        
+        guard self.playbackControlView.isHidden else {
             return
         }
         self.cancelGesture.isEnabled = true
         
         UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.controlView.isHidden = false
+            self.playbackControlView.isHidden = false
         })
+        
+       
     }
     
-    func autoHideControl() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
+    private func autoHideControl() {
+        playbackControlHideTimer?.invalidate()
+        playbackControlHideTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { timer in
             self.hideControl()
         }
     }
     
-    func hideControl() {
-        timer?.invalidate()
-        self.cancelGesture.isEnabled = true
+    private func hideControl() {
+        playbackControlHideTimer?.invalidate()
+        self.cancelGesture.isEnabled = false
+        
+        guard !self.playbackControlView.isHidden else {
+            return
+        }
+        
         UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.controlView.isHidden = true
+            self.playbackControlView.isHidden = true
         })
     }
     
     @IBAction func cancel(_ sender: Any) {
-        sliderTime = nil
         player.play()
         hideControl()
     }
-    @IBAction func handleRemteSurfaceAction(_ sender: UITapGestureRecognizer) {
-        print("select")
-        guard let action = remoteActionController?.currentAction else {
+}
+
+
+// MARK: - Update views
+extension VLCPlayerViewController {
+    fileprivate func updateViews(with time: VLCTime) {
+        positionLabel.text = time.stringValue
+
+        guard let totalTime = player.totalTime, let value = time.value?.doubleValue, let totalValue = totalTime.value?.doubleValue else {
+            remainingLabel.isHidden = true
+            positionConstraint.constant = transportBar.bounds.width / 2
             return
         }
-        showControl(sender)
-
-        switch action {
-        case .forward:
-            player.jumpForward(30)
+        
+        positionConstraint.constant = round(CGFloat(value / totalValue) * transportBar.bounds.width)
+        remainingLabel.isHidden = positionConstraint.constant + positionLabel.frame.width > remainingLabel.frame.minX - 60
+    }
+    
+    fileprivate func updateRemainingLabel(with time: VLCTime) {
+        guard let totalTime = player.totalTime, totalTime.value != nil else {
+            return
+        }
+        remainingLabel.text = (totalTime - time).stringValue
+    }
+    
+    fileprivate func setUpPositionController() {
+        guard player.isSeekable else {
+            positionController = nil
+            return
+        }
+        
+        if player.state == .paused {
+            positionController = scrubbingPositionController
+        } else {
+            positionController = remoteActionPositionController
+        }
+    }
+    
+    fileprivate func animateIndicatorsIfNecessary() {
+        if player.state == .opening {
+            openingIndicator.startAnimating()
+        }
+        if player.state == .buffering && player.isPlaying {
+            bufferingIndicator.startAnimating()
+        }
+    }
+    fileprivate func setUpGestures() {
+        playPauseGesture.isEnabled = player.state != .opening && player.state != .stopped
+    }
+    
+    fileprivate func handlePlaybackControlVisibility() {
+        if player.state == .paused {
+            showPlaybackControl()
+        } else {
             autoHideControl()
-
-        case .backward:
-            player.jumpBackward(30)
-            autoHideControl()
-
-        case .show:
-            togglePlay(sender)
         }
     }
 }
 
 
 
+
 // MARK: - VLC Delegate
 extension VLCPlayerViewController: VLCMediaPlayerDelegate {
-    public func mediaPlayerStateChanged(_ aNotification: Notification!) {
-        print(self.player.isSeekable)
-        print(self.player.time.value)
 
-        
-        let activateSlider = self.player.state == .paused && self.player.isSeekable && self.player.time.value != nil
-        self.sliderGesture.isEnabled = activateSlider
-        UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            if activateSlider {
-                self.sliderView.isHidden = false
-            } else {
-                self.sliderView.isHidden = true
-            }
-        })
-        
-        if player.state == .buffering && player.isPlaying {
-            bufferingIndocator.startAnimating()
-        } else {
-            bufferingIndocator.stopAnimating()
-        }
-        
-        //playGesture.isEnabled = player.state != .opening
+    public func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        setUpGestures()
+        setUpPositionController()
+        animateIndicatorsIfNecessary()
+        handlePlaybackControlVisibility()
     }
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         openingIndicator.stopAnimating()
-        playPauseGesture.isEnabled = true
-        bufferingIndocator.stopAnimating()
-     
-        positionLabel.text = player.time.stringValue
-        remainingLabel.text = player.remainingTime.stringValue
-        sliderLabel.text = positionLabel.text
-    
-        positionConstraint.constant = round(CGFloat(player.position) * progressBar.bounds.width)
-        positionSliderConstraint.constant = positionConstraint.constant
-    
-        remainingLabel.isHidden = positionLabel.frame.maxX > remainingLabel.frame.minX - 60
+        bufferingIndicator.stopAnimating()
+
+        updateViews(with: player.time)
     }
     
+}
+
+
+// MARK: - Scrubbling Delegate
+extension VLCPlayerViewController: ScrubbingPositionControllerDelegate {
+    func scrubbingPositionController(_ vc: ScrubbingPositionController, didScrubToTime time: VLCTime) {
+        updateRemainingLabel(with: time)
+    }
+    
+    func scrubbingPositionController(_ vc: ScrubbingPositionController, didSelectTime time: VLCTime) {
+        player.time = time
+        updateViews(with: time) // ?
+        player.play()
+    }
+}
+
+// MARK: - Remote Action Delegate
+extension VLCPlayerViewController: RemoteActionPositionControllerDelegate {
+    func remoteActionPositionControllerDidDetectTouch(_ vc: RemoteActionPositionController) {
+        showPlaybackControl()
+    }
+    func remoteActionPositionController(_ vc: RemoteActionPositionController, didSelectAction action: RemoteActionPositionController.Action) {
+        showPlaybackControl()
+
+        switch action {
+        case .forward:
+            player.jumpForward(30)
+        case .backward:
+            player.jumpBackward(30)
+        case .neutral:
+            player.pause()
+        }
+    }
 }
 
 // MARK: - Gesture
 extension VLCPlayerViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
-
     }
 }

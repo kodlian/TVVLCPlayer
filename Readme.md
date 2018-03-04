@@ -4,6 +4,11 @@
 
 TVVLCPlayer lets you integrate easylily a powerfull video player with control views to your tv apps. Based on [TVVLCKit]()https://code.videolan.org/videolan/VLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
 
+## Features
+- Native look
+- Scrubbling
+- Jump and scroll
+
 ## Usage
 ### Storyboard
 In your storyboard add a reference to the VLCPlayerViewController from TVVLCPlayer module
@@ -17,6 +22,7 @@ In your storyboard add a reference to the VLCPlayerViewController from TVVLCPlay
  }
 
 ```
+
 ### In code
 ```swift
 let media: VLCMedia = ...
@@ -37,7 +43,7 @@ github "kodlian/TVVLCPlayer" ~> 1.0
 ## Todo
 - [ ] Audio channels selector
 - [ ] Subtitles selector
-- [ ] Media info panel
+- [ ] Info views
 
 
 
