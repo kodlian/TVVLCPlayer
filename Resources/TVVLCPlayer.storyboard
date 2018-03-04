@@ -174,6 +174,7 @@
                         <outlet property="positionLabel" destination="zf6-aI-TXF" id="BL6-sc-nej"/>
                         <outlet property="remainingLabel" destination="bSH-lc-2cR" id="H1k-ad-bUU"/>
                         <outlet property="remoteActionPositionController" destination="1YH-10-II6" id="FE9-ZI-ION"/>
+                        <outlet property="rightActionIndicator" destination="ZnM-wJ-iBG" id="Otb-34-I1H"/>
                         <outlet property="scrubbingLabel" destination="QpR-Gk-axt" id="zs6-nM-4SZ"/>
                         <outlet property="scrubbingPositionController" destination="nNO-Af-76t" id="7K2-9A-7F0"/>
                         <outlet property="transportBar" destination="e4b-RO-Ryc" id="ZgE-y8-quK"/>

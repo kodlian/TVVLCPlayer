@@ -22,7 +22,8 @@ public class VLCPlayerViewController: UIViewController {
     @IBOutlet weak var transportBar: ProgressBar!
     @IBOutlet weak var scrubbingLabel: UILabel!
     @IBOutlet weak var playbackControlView: GradientView!
-    
+    @IBOutlet weak var rightActionIndicator: UIImageView!
+
     @IBOutlet weak var positionConstraint: NSLayoutConstraint!
     @IBOutlet weak var bufferingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var openingIndicator: UIActivityIndicatorView!
@@ -40,14 +41,26 @@ public class VLCPlayerViewController: UIViewController {
         }
     }
     
-    var positionController: PositionController? {
+    private var positionController: PositionController? {
         didSet {
             oldValue?.isEnabled = false
             positionController?.isEnabled = true
         }
     }
     
-    let player = VLCMediaPlayer()
+    private var isBuffering: Bool = false {
+        didSet {
+            if isBuffering {
+                bufferingIndicator.startAnimating()
+            } else {
+                bufferingIndicator.stopAnimating()
+                
+            }
+            rightActionIndicator.isHidden = isBuffering
+        }
+    }
+    
+    public let player = VLCMediaPlayer()
     
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
@@ -184,7 +197,7 @@ extension VLCPlayerViewController {
             openingIndicator.startAnimating()
         }
         if player.state == .buffering && player.isPlaying {
-            bufferingIndicator.startAnimating()
+            isBuffering = true
         }
     }
     fileprivate func setUpGestures() {
@@ -215,7 +228,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
     
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         openingIndicator.stopAnimating()
-        bufferingIndicator.stopAnimating()
+        isBuffering = false
 
         updateViews(with: player.time)
     }

@@ -51,26 +51,32 @@ class RemoteActionPositionController: NSObject, PositionController {
 
     private var currentAction = Action.neutral {
         didSet {
-            updateIndicators()
+            if currentAction != oldValue {
+                updateIndicators()
+            }
         }
     }
     
-     // MARK: Indicators
+    // MARK: Indicators
     private func updateIndicators() {
-     
-        switch currentAction {
-        case .forward:
-            self.leftActionIndicator?.image = nil
-            self.rightActionIndicator?.image = currentAction.image
-            
-        case .backward:
-            self.leftActionIndicator?.image = currentAction.image
-            self.rightActionIndicator?.image = nil
-            
-        case .neutral:
-            self.leftActionIndicator?.image = nil
-            self.rightActionIndicator?.image = nil
-        }
+        UIView.transition(with: leftActionIndicator!.superview!,
+                          duration: 0.4,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            switch self.currentAction {
+                            case .forward:
+                                self.leftActionIndicator?.image = nil
+                                self.rightActionIndicator?.image = self.currentAction.image
+                                
+                            case .backward:
+                                self.leftActionIndicator?.image = self.currentAction.image
+                                self.rightActionIndicator?.image = nil
+                                
+                            case .neutral:
+                                self.leftActionIndicator?.image = nil
+                                self.rightActionIndicator?.image = nil
+                            }
+        })
     }
     
     // MARK: Surface Touch
