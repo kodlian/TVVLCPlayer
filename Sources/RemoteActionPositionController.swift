@@ -36,8 +36,8 @@ class RemoteActionPositionController: NSObject, PositionController {
         }
     }
     
-    @IBOutlet weak var rightActionIndicator: UIImageView!
-    @IBOutlet weak var leftActionIndicator: UIImageView!
+    @IBOutlet weak var rightActionIndicator: UIImageView?
+    @IBOutlet weak var leftActionIndicator: UIImageView?
     @IBOutlet weak var delegate: RemoteActionPositionControllerDelegate?
 
     var isEnabled: Bool = false {
@@ -57,18 +57,19 @@ class RemoteActionPositionController: NSObject, PositionController {
     
      // MARK: Indicators
     private func updateIndicators() {
+     
         switch currentAction {
         case .forward:
-            self.leftActionIndicator.image = nil
-            self.rightActionIndicator.image = currentAction.image
+            self.leftActionIndicator?.image = nil
+            self.rightActionIndicator?.image = currentAction.image
             
         case .backward:
-            self.leftActionIndicator.image = currentAction.image
-            self.rightActionIndicator.image = nil
+            self.leftActionIndicator?.image = currentAction.image
+            self.rightActionIndicator?.image = nil
             
         case .neutral:
-            self.leftActionIndicator.image = nil
-            self.rightActionIndicator.image = nil
+            self.leftActionIndicator?.image = nil
+            self.rightActionIndicator?.image = nil
         }
     }
     
@@ -76,6 +77,10 @@ class RemoteActionPositionController: NSObject, PositionController {
     private func trackSurfaceTouch() {
         gamePad?.reportsAbsoluteDpadValues = true
         gamePad?.dpad.valueChangedHandler = { (dpad: GCControllerDirectionPad, xValue: Float, yValue: Float) -> Void in
+            guard self.isEnabled else {
+                return
+            }
+            
             if xValue > 0.5 {
                 self.currentAction = .forward
             } else if xValue < -0.5 {
@@ -84,6 +89,7 @@ class RemoteActionPositionController: NSObject, PositionController {
                 self.currentAction = .neutral
             }
             self.delegate?.remoteActionPositionControllerDidDetectTouch(self)
+            
         }
     }
     
