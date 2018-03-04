@@ -34,6 +34,12 @@ public class VLCPlayerViewController: UIViewController {
     @IBOutlet var scrubbingPositionController: ScrubbingPositionController!
     @IBOutlet var remoteActionPositionController: RemoteActionPositionController!
 
+    public var media: VLCMedia? {
+        didSet {
+            player.media = media
+        }
+    }
+    
     var positionController: PositionController? {
         didSet {
             oldValue?.isEnabled = false
@@ -41,16 +47,18 @@ public class VLCPlayerViewController: UIViewController {
         }
     }
     
-    public var url: URL! = URL(string: "https://upload.wikimedia.org/wikipedia/commons/8/88/Big_Buck_Bunny_alt.webm")!
     let player = VLCMediaPlayer()
+    
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        let media = VLCMedia(url: url)
-        player.media = media
+        guard let _ = self.media else {
+            fatalError("Should define a media before presenting player.")
+        }
+        
         player.delegate = self
         player.drawable = videoView
         player.play()

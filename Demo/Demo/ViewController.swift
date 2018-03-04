@@ -10,7 +10,7 @@ import UIKit
 import TVVLCPlayer
 
 class ViewController: UIViewController {
-
+    let demoVideoURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/8/88/Big_Buck_Bunny_alt.webm")!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -23,7 +23,8 @@ class ViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let playerVC = segue.destination as? VLCPlayerViewController {
-           // player.url = 
+            let media = VLCMedia(url: demoVideoURL)
+            playerVC.media = media
         }
     }
 }

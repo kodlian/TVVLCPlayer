@@ -76,9 +76,6 @@ class RemoteActionPositionController: NSObject, PositionController {
     private func trackSurfaceTouch() {
         gamePad?.reportsAbsoluteDpadValues = true
         gamePad?.dpad.valueChangedHandler = { (dpad: GCControllerDirectionPad, xValue: Float, yValue: Float) -> Void in
-            // … write your logic here
-            // In our case, we just needed to detect whether the touch    position was on the left or
-            // right, we can just use the left and right property of the GCControllerDirectionPad
             if xValue > 0.5 {
                 self.currentAction = .forward
             } else if xValue < -0.5 {
@@ -95,7 +92,6 @@ class RemoteActionPositionController: NSObject, PositionController {
     }
     
     // MARK: IB Actions
-
     func click(_ sender: Any) {
         guard isEnabled else {
             return
@@ -111,32 +107,5 @@ class RemoteActionPositionController: NSObject, PositionController {
         currentAction = .neutral
         self.delegate?.remoteActionPositionController(self, didSelectAction: self.currentAction)
     }
-    
-    //
-    //    init() {
-    //
-    //    }
-    
-    //    @IBAction func handleRemteSurfaceAction(_ sender: UITapGestureRecognizer) {
-    //        print("select")
-    //        guard let action = remoteActionController?.currentAction else {
-    //            return
-    //        }
-    //        showControl(sender)
-    //
-    //        switch action {
-    //        case .forward:
-    //            player.jumpForward(30)
-    //            autoHideControl()
-    //
-    //        case .backward:
-    //            player.jumpBackward(30)
-    //            autoHideControl()
-    //
-    //        case .show:
-    //            togglePlay(sender)
-    //        }
-    //    }
-    
 }
 
