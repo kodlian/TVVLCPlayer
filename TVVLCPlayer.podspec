@@ -9,19 +9,16 @@ Pod::Spec.new do |s|
                        DESC
   s.static_framework = true
   s.homepage         = "https://github.com/kodlian/TVVLCPlayer"
-  s.screenshots     = "https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/Assets/slider.png"
+  s.screenshots      =  "https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/screenshot.jpg"
   s.license          = 'MIT'
   s.author           = "Jérémy Marchand"
   s.source           = { :git => "https://github.com/kodlian/TVVLCPlayer.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/kodlian'
-
+  s.swift_version    = '4.0'
   s.tvos.deployment_target = '11.0'
 
   s.source_files = 'Sources/*.{swift,h}'
 
-  s.resource_bundles = {
-    'TVVLCPlayer' => ['Sources/*.storyboard']
-  }
   s.frameworks = 'UIKit'
   s.dependency 'TVVLCKit'
   s.pod_target_xcconfig = {
