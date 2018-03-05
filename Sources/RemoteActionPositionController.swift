@@ -63,17 +63,26 @@ class RemoteActionPositionController: NSObject, PositionController {
     private var touchLocation: Location = .center {
         didSet {
             if touchLocation != oldValue {
-                updateIndicators()
+                updateDisplayedAction()
             }
         }
     }
     private var isLongPress = false {
         didSet {
             if isLongPress != oldValue {
-                updateIndicators()
+                updateDisplayedAction()
             }
         }
     }
+    
+    private var displayedAction: Action = .pause {
+        didSet {
+            if displayedAction != oldValue {
+                updateIndicatorsImages()
+            }
+        }
+    }
+    
     public func reset() {
         touchLocation = .center
         isLongPress = false
@@ -89,10 +98,9 @@ class RemoteActionPositionController: NSObject, PositionController {
         case .right:
             return .fastForward
         }
-       
     }
     
-    func actionOnPressEndForCurrentLocation() -> Action {
+    func actionOnPressEndedForCurrentLocation() -> Action {
         switch self.touchLocation {
         case .left:
             return .jumpBackward
@@ -103,18 +111,16 @@ class RemoteActionPositionController: NSObject, PositionController {
         }
     }
     
-    func actionForCurrentLocation() -> Action {
+    private func updateDisplayedAction() {
         if isLongPress {
-            return longPressedActionForCurrentLocation()
+            displayedAction = longPressedActionForCurrentLocation()
         } else {
-            return actionOnPressEndForCurrentLocation()
+            displayedAction = actionOnPressEndedForCurrentLocation()
         }
     }
-    
-    
  
     // MARK: Indicators
-    private func updateIndicators() {
+    private func updateIndicatorsImages() {
         UIView.transition(with: leftActionIndicator!.superview!,
                           duration: 0.4,
                           options: .transitionCrossDissolve,
@@ -123,7 +129,7 @@ class RemoteActionPositionController: NSObject, PositionController {
                                 return
                             }
                             
-                            (left.image, right.image) = self.actionForCurrentLocation().images
+                            (left.image, right.image) = self.displayedAction.images
         })
     }
     
@@ -167,7 +173,7 @@ class RemoteActionPositionController: NSObject, PositionController {
             if sender.isLongPress {
                 self.delegate?.remoteActionPositionController(self, didSelectAction: .reset)
             } else {
-                self.delegate?.remoteActionPositionController(self, didSelectAction: actionOnPressEndForCurrentLocation())
+                self.delegate?.remoteActionPositionController(self, didSelectAction: actionOnPressEndedForCurrentLocation())
             }
             reset()
 

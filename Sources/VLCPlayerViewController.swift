@@ -46,6 +46,9 @@ public class VLCPlayerViewController: UIViewController {
     
     private var positionController: PositionController? {
         didSet {
+            guard positionController !== oldValue else {
+                return
+            }
             oldValue?.isEnabled = false
             positionController?.isEnabled = true
         }
