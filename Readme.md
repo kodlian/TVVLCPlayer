@@ -12,7 +12,7 @@ TVVLCPlayer lets you integrate easylily a powerfull video player with playback c
 ## Installation
 ```ruby
 # CocoaPods
-pod "TVVLCPlayer", "~> 1.0"
+pod "TVVLCPlayer", "~> 1.0.1"
 ```
 
 ## Usage
