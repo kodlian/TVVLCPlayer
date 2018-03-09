@@ -55,7 +55,6 @@ class ScrubbingPositionController: NSObject, PositionController {
     // MARK:Visibility
     func toggleScrubbingViewVisibility() {
         let transform = CGAffineTransform(translationX: 0, y: scrubbingBar.bounds.height).scaledBy(x: 0.1, y: 0.1)
-        print(isEnabled)
 
         if isEnabled && scrubbingView.isHidden {
             scrubbingView.isHidden = false
@@ -123,7 +122,6 @@ class ScrubbingPositionController: NSObject, PositionController {
         if abs(translation) > 1 {
             var frame: CGFloat = 0
             
-            print("change \(translation)")
             let startPosition = scrubbingPositionConstraint.constant
             decelerateTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { (timer: Timer) in
                 let position = easeOut(time: frame, change: translation, startPosition: startPosition, duration: self.numberOfFrames)

@@ -40,7 +40,6 @@ class LongPressGestureRecogniser: UIGestureRecognizer {
             guard self.isClick else {
                 return
             }
-            print("long press")
             self.isLongPress = true
             self.state = .changed
         }
