@@ -30,7 +30,10 @@ class RemoteActionPositionController: NSObject, PositionController {
         case fastForward, rewind, jumpForward, jumpBackward, reset, pause
         
         var images: (left: UIImage?, right: UIImage?) {
-            let bundle = Bundle(identifier: "org.cocoapods.TVVLCPlayer")
+            guard let url = Bundle.main.url(forResource: "TVVLCPlayer", withExtension: "bundle"),
+                let bundle = Bundle(url: url) else {
+                fatalError()
+            }
             
             switch self {
             case .fastForward:

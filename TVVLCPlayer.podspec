@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TVVLCPlayer"
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.summary          = "A powerfull video player"
 
   s.description      = <<-DESC
@@ -24,5 +24,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = {
       'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h"
   }
-  s.resources = ["Resources/*.{storyboard,xcassets}"]
+  s.resources = ["Resources/*.storyboard"]
+  s.resource_bundle = { 'TVVLCPlayer' => [ 'Resources/*.xcassets' ] }
+
 end
