@@ -59,6 +59,11 @@ class RemoteActionPositionController: NSObject, PositionController {
     
     private let gamePad = GCController.controllers().first?.microGamepad
 
+    // MARK: Deinit
+    deinit {
+        gamePad?.dpad.valueChangedHandler = nil
+    }
+    
     // MARK: State
     private var touchLocation: Location = .center {
         didSet {
@@ -136,7 +141,7 @@ class RemoteActionPositionController: NSObject, PositionController {
     // MARK: Surface Touch
     private func trackSurfaceTouch() {
         gamePad?.reportsAbsoluteDpadValues = true
-        gamePad?.dpad.valueChangedHandler = { (dpad: GCControllerDirectionPad, xValue: Float, yValue: Float) -> Void in
+        gamePad?.dpad.valueChangedHandler = { [unowned self] (dpad: GCControllerDirectionPad, xValue: Float, yValue: Float) -> Void in
             
             if xValue > 0.5 {
                 self.touchLocation = .right
