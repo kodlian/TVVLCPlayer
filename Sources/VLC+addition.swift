@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TVVLCKit
 
 extension VLCMediaPlayer {
     var totalTime: VLCTime? {

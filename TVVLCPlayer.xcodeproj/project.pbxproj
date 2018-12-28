@@ -1,0 +1,631 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3F7CC77021D698320094B074 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC76F21D698320094B074 /* AVFoundation.framework */; };
+		3F7CC77221D6985C0094B074 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC77121D6985C0094B074 /* VideoToolbox.framework */; };
+		3F7CC77421D698C20094B074 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC77321D698C20094B074 /* AudioToolbox.framework */; };
+		3F7CC77C21D698E10094B074 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC77B21D698E00094B074 /* CoreMedia.framework */; };
+		3F7CC78221D699020094B074 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC78121D699020094B074 /* libiconv.tbd */; };
+		3F7CC78A21D6992E0094B074 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC78921D6992E0094B074 /* libz.tbd */; };
+		3F7CC78E21D699830094B074 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC78D21D699830094B074 /* libbz2.tbd */; };
+		3F7CC79021D699980094B074 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC78F21D699980094B074 /* libc++.tbd */; };
+		3F7CC79221D699AF0094B074 /* TVVLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC79121D699AF0094B074 /* TVVLCKit.framework */; };
+		3F7CC7A421D6A9550094B074 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CC7A321D6A9550094B074 /* ViewController.swift */; };
+		3F7CC7A721D6A9550094B074 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7CC7A521D6A9550094B074 /* Main.storyboard */; };
+		3F7CC7A921D6A9570094B074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7CC7A821D6A9570094B074 /* Assets.xcassets */; };
+		3F7CC7B121D6A9A10094B074 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CC7B021D6A9A10094B074 /* AppDelegate.swift */; };
+		3F7CC7B421D6A9E90094B074 /* TVVLCPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F19D41F21288C4C009E68AF /* TVVLCPlayer.framework */; };
+		3F7CC7B821D6AA680094B074 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F7CC7B621D6AA680094B074 /* Images.xcassets */; };
+		3F7CC7B921D6AA680094B074 /* TVVLCPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F7CC7B721D6AA680094B074 /* TVVLCPlayer.storyboard */; };
+		3F8FF6E721D63C7500A86CDF /* VLCPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6DE21D63C6F00A86CDF /* VLCPlayerViewController.swift */; };
+		3F8FF6E921D63C7500A86CDF /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */; };
+		3F8FF6EA21D63C7500A86CDF /* RemoteActionPositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */; };
+		3F8FF6EB21D63C7500A86CDF /* ScrubbingPositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */; };
+		3F8FF6EC21D63C7500A86CDF /* LongPressGestureRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */; };
+		3F8FF6ED21D63C7500A86CDF /* VLC+addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E421D63C6F00A86CDF /* VLC+addition.swift */; };
+		3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E521D63C6F00A86CDF /* GradientView.swift */; };
+		3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E621D63C6F00A86CDF /* PositionController.swift */; };
+		3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F8FF70F21D6404C00A86CDF /* TVVLCPlayer-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3F8FF71121D6438C00A86CDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8FF71021D6438C00A86CDF /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3F7CC7B221D6A9E70094B074 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F19D41621288C4C009E68AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F19D41E21288C4C009E68AF;
+			remoteInfo = TVVLCPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3F19D41F21288C4C009E68AF /* TVVLCPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVVLCPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F7CC76F21D698320094B074 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3F7CC77121D6985C0094B074 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		3F7CC77321D698C20094B074 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		3F7CC77B21D698E00094B074 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		3F7CC78121D699020094B074 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		3F7CC78321D699090094B074 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		3F7CC78721D6991A0094B074 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3F7CC78921D6992E0094B074 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		3F7CC78B21D699380094B074 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3F7CC78D21D699830094B074 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		3F7CC78F21D699980094B074 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		3F7CC79121D699AF0094B074 /* TVVLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVVLCKit.framework; path = Carthage/Build/tvOS/TVVLCKit.framework; sourceTree = "<group>"; };
+		3F7CC79F21D6A9550094B074 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F7CC7A321D6A9550094B074 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F7CC7A621D6A9550094B074 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F7CC7A821D6A9570094B074 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3F7CC7AA21D6A9570094B074 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F7CC7B021D6A9A10094B074 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F7CC7B621D6AA680094B074 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3F7CC7B721D6AA680094B074 /* TVVLCPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TVVLCPlayer.storyboard; sourceTree = "<group>"; };
+		3F7CC7BD21D6B1310094B074 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
+		3F8FF6DE21D63C6F00A86CDF /* VLCPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewController.swift; sourceTree = "<group>"; };
+		3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TVVLCPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
+		3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteActionPositionController.swift; sourceTree = "<group>"; };
+		3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubbingPositionController.swift; sourceTree = "<group>"; };
+		3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LongPressGestureRecogniser.swift; sourceTree = "<group>"; };
+		3F8FF6E421D63C6F00A86CDF /* VLC+addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VLC+addition.swift"; sourceTree = "<group>"; };
+		3F8FF6E521D63C6F00A86CDF /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		3F8FF6E621D63C6F00A86CDF /* PositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PositionController.swift; sourceTree = "<group>"; };
+		3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVVLCPlayer.h; sourceTree = "<group>"; };
+		3F8FF6F221D63C8100A86CDF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F8FF71021D6438C00A86CDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3F19D41C21288C4C009E68AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CC79221D699AF0094B074 /* TVVLCKit.framework in Frameworks */,
+				3F7CC77421D698C20094B074 /* AudioToolbox.framework in Frameworks */,
+				3F7CC77021D698320094B074 /* AVFoundation.framework in Frameworks */,
+				3F7CC77221D6985C0094B074 /* VideoToolbox.framework in Frameworks */,
+				3F7CC77C21D698E10094B074 /* CoreMedia.framework in Frameworks */,
+				3F8FF71121D6438C00A86CDF /* Foundation.framework in Frameworks */,
+				3F7CC78A21D6992E0094B074 /* libz.tbd in Frameworks */,
+				3F7CC78E21D699830094B074 /* libbz2.tbd in Frameworks */,
+				3F7CC79021D699980094B074 /* libc++.tbd in Frameworks */,
+				3F7CC78221D699020094B074 /* libiconv.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F7CC79C21D6A9550094B074 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CC7B421D6A9E90094B074 /* TVVLCPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3F19D41521288C4C009E68AF = {
+			isa = PBXGroup;
+			children = (
+				3F8FF6F021D63C8100A86CDF /* TVVLCPlayer */,
+				3F8FF6DD21D63C6F00A86CDF /* Sources */,
+				3F7CC7B521D6AA680094B074 /* Resources */,
+				3F7CC7A021D6A9550094B074 /* Demo */,
+				3F19D42021288C4C009E68AF /* Products */,
+				3F8FF6F521D63DBC00A86CDF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3F19D42021288C4C009E68AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F19D41F21288C4C009E68AF /* TVVLCPlayer.framework */,
+				3F7CC79F21D6A9550094B074 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F7CC7A021D6A9550094B074 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CC7B021D6A9A10094B074 /* AppDelegate.swift */,
+				3F7CC7A321D6A9550094B074 /* ViewController.swift */,
+				3F7CC7A521D6A9550094B074 /* Main.storyboard */,
+				3F7CC7A821D6A9570094B074 /* Assets.xcassets */,
+				3F7CC7AA21D6A9570094B074 /* Info.plist */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		3F7CC7B521D6AA680094B074 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CC7B621D6AA680094B074 /* Images.xcassets */,
+				3F7CC7B721D6AA680094B074 /* TVVLCPlayer.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F8FF6DD21D63C6F00A86CDF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FF6DE21D63C6F00A86CDF /* VLCPlayerViewController.swift */,
+				3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */,
+				3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */,
+				3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */,
+				3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */,
+				3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */,
+				3F8FF6E421D63C6F00A86CDF /* VLC+addition.swift */,
+				3F8FF6E521D63C6F00A86CDF /* GradientView.swift */,
+				3F8FF6E621D63C6F00A86CDF /* PositionController.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3F8FF6F021D63C8100A86CDF /* TVVLCPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */,
+				3F8FF6F221D63C8100A86CDF /* Info.plist */,
+			);
+			path = TVVLCPlayer;
+			sourceTree = "<group>";
+		};
+		3F8FF6F521D63DBC00A86CDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CC7BD21D6B1310094B074 /* Modules */,
+				3F7CC79121D699AF0094B074 /* TVVLCKit.framework */,
+				3F7CC78F21D699980094B074 /* libc++.tbd */,
+				3F7CC78D21D699830094B074 /* libbz2.tbd */,
+				3F7CC78B21D699380094B074 /* UIKit.framework */,
+				3F7CC78921D6992E0094B074 /* libz.tbd */,
+				3F7CC78721D6991A0094B074 /* QuartzCore.framework */,
+				3F7CC78321D699090094B074 /* OpenGLES.framework */,
+				3F7CC78121D699020094B074 /* libiconv.tbd */,
+				3F7CC77B21D698E00094B074 /* CoreMedia.framework */,
+				3F7CC77321D698C20094B074 /* AudioToolbox.framework */,
+				3F7CC77121D6985C0094B074 /* VideoToolbox.framework */,
+				3F7CC76F21D698320094B074 /* AVFoundation.framework */,
+				3F8FF71021D6438C00A86CDF /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3F19D41A21288C4C009E68AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8FF70F21D6404C00A86CDF /* TVVLCPlayer-Bridging-Header.h in Headers */,
+				3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3F19D41E21288C4C009E68AF /* TVVLCPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F19D42721288C4C009E68AF /* Build configuration list for PBXNativeTarget "TVVLCPlayer" */;
+			buildPhases = (
+				3F7CC7BF21D6B1420094B074 /* Copy modulemap in VLC Kit framework */,
+				3F19D41A21288C4C009E68AF /* Headers */,
+				3F19D41B21288C4C009E68AF /* Sources */,
+				3F19D41C21288C4C009E68AF /* Frameworks */,
+				3F19D41D21288C4C009E68AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TVVLCPlayer;
+			productName = TVVLCPlayer;
+			productReference = 3F19D41F21288C4C009E68AF /* TVVLCPlayer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3F7CC79E21D6A9550094B074 /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F7CC7AB21D6A9570094B074 /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				3F7CC79B21D6A9550094B074 /* Sources */,
+				3F7CC79C21D6A9550094B074 /* Frameworks */,
+				3F7CC79D21D6A9550094B074 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F7CC7B321D6A9E70094B074 /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 3F7CC79F21D6A9550094B074 /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3F19D41621288C4C009E68AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Jérémy Marchand";
+				TargetAttributes = {
+					3F19D41E21288C4C009E68AF = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					3F7CC79E21D6A9550094B074 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3F19D41921288C4C009E68AF /* Build configuration list for PBXProject "TVVLCPlayer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3F19D41521288C4C009E68AF;
+			productRefGroup = 3F19D42021288C4C009E68AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3F19D41E21288C4C009E68AF /* TVVLCPlayer */,
+				3F7CC79E21D6A9550094B074 /* Demo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3F19D41D21288C4C009E68AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CC7B821D6AA680094B074 /* Images.xcassets in Resources */,
+				3F7CC7B921D6AA680094B074 /* TVVLCPlayer.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F7CC79D21D6A9550094B074 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CC7A921D6A9570094B074 /* Assets.xcassets in Resources */,
+				3F7CC7A721D6A9550094B074 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F7CC7BF21D6B1420094B074 /* Copy modulemap in VLC Kit framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Modules",
+			);
+			name = "Copy modulemap in VLC Kit framework";
+			outputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/TVVLCKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp -pr $SCRIPT_INPUT_FILE_0 $SCRIPT_OUTPUT_FILE_0/Modules";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3F19D41B21288C4C009E68AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F8FF6EC21D63C7500A86CDF /* LongPressGestureRecogniser.swift in Sources */,
+				3F8FF6EB21D63C7500A86CDF /* ScrubbingPositionController.swift in Sources */,
+				3F8FF6E921D63C7500A86CDF /* ProgressBar.swift in Sources */,
+				3F8FF6ED21D63C7500A86CDF /* VLC+addition.swift in Sources */,
+				3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */,
+				3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */,
+				3F8FF6E721D63C7500A86CDF /* VLCPlayerViewController.swift in Sources */,
+				3F8FF6EA21D63C7500A86CDF /* RemoteActionPositionController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F7CC79B21D6A9550094B074 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F7CC7B121D6A9A10094B074 /* AppDelegate.swift in Sources */,
+				3F7CC7A421D6A9550094B074 /* ViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F7CC7B321D6A9E70094B074 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F19D41E21288C4C009E68AF /* TVVLCPlayer */;
+			targetProxy = 3F7CC7B221D6A9E70094B074 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3F7CC7A521D6A9550094B074 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F7CC7A621D6A9550094B074 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3F19D42521288C4C009E68AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 12.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3F19D42621288C4C009E68AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = appletvos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				TVOS_DEPLOYMENT_TARGET = 12.0;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3F19D42821288C4C009E68AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9DQT98LJ77;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = TVVLCPlayer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.TVVLCPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		3F19D42921288C4C009E68AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 9DQT98LJ77;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = TVVLCPlayer/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.TVVLCPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		3F7CC7AC21D6A9570094B074 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DQT98LJ77;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
+			};
+			name = Debug;
+		};
+		3F7CC7AD21D6A9570094B074 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9DQT98LJ77;
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.Demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 11.4;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3F19D41921288C4C009E68AF /* Build configuration list for PBXProject "TVVLCPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F19D42521288C4C009E68AF /* Debug */,
+				3F19D42621288C4C009E68AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F19D42721288C4C009E68AF /* Build configuration list for PBXNativeTarget "TVVLCPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F19D42821288C4C009E68AF /* Debug */,
+				3F19D42921288C4C009E68AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F7CC7AB21D6A9570094B074 /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F7CC7AC21D6A9570094B074 /* Debug */,
+				3F7CC7AD21D6A9570094B074 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3F19D41621288C4C009E68AF /* Project object */;
+}

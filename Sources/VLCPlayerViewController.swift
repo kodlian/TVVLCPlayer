@@ -8,6 +8,7 @@
 
 import UIKit
 import GameController
+import TVVLCKit
 
 public class VLCPlayerViewController: UIViewController {
     public static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
