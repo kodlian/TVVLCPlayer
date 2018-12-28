@@ -17,7 +17,7 @@ github "kodlian/TVVLCPlayer", "~> 1.1.0"
 
 ```ruby
 # CocoaPods
-pod "TVVLCPlayer", "~> 1.1.0"
+pod ":git => 'https://github.com/kodlian/TVVLCPlayer.git', :tag => "1.1.0"
 
 pre_install do |installer|
 	# workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
