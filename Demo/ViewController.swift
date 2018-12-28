@@ -24,9 +24,9 @@ class ViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let playerVC = segue.destination as? VLCPlayerViewController {
-            let media = VLCMedia(url: demoVideoURL)
-            playerVC.media = media
+            let player = VLCMediaPlayer()
+            player.media = VLCMedia(url: demoVideoURL)
+            playerVC.player = player
         }
     }
 }
-

@@ -10,14 +10,23 @@ import UIKit
 import GameController
 import TVVLCKit
 
+/// `VLCPlayerViewController` is a subclass of `UIViewController` that can be used to display the visual content of an `VLCPlayer` object and the standard playback controls.
 public class VLCPlayerViewController: UIViewController {
     public static func instantiate(media: VLCMedia) -> VLCPlayerViewController {
+        let player = VLCMediaPlayer()
+        player.media = media
+        return instantiate(player: VLCMediaPlayer())
+    }
+
+    public static func instantiate(player: VLCMediaPlayer) -> VLCPlayerViewController {
         let storyboard = UIStoryboard(name: "TVVLCPlayer", bundle: Bundle(for: VLCPlayerViewController.self))
-        let controller = storyboard.instantiateInitialViewController() as! VLCPlayerViewController
-        controller.media = media
+        guard let controller = storyboard.instantiateInitialViewController() as? VLCPlayerViewController else {
+            fatalError()
+        }
+        controller.player = player
         return controller
     }
-  
+
     @IBOutlet var videoView: UIView!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var remainingLabel: UILabel!
@@ -29,22 +38,26 @@ public class VLCPlayerViewController: UIViewController {
     @IBOutlet weak var positionConstraint: NSLayoutConstraint!
     @IBOutlet weak var bufferingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var openingIndicator: UIActivityIndicatorView!
-    
+
     @IBOutlet var actionGesture: LongPressGestureRecogniser!
     @IBOutlet var playPauseGesture: UITapGestureRecognizer!
     @IBOutlet var cancelGesture: UITapGestureRecognizer!
-    
+
     @IBOutlet var scrubbingPositionController: ScrubbingPositionController!
     @IBOutlet var remoteActionPositionController: RemoteActionPositionController!
 
-    public var media: VLCMedia? {
+    /// Set the player.
+    /// The player should be set before the view is loaded.
+    public var player: VLCMediaPlayer = VLCMediaPlayer() {
         didSet {
-            player.media = media
+            if isViewLoaded {
+                fatalError("The VLCPlayer player should be set before the view is loaded.")
+            }
             isOpening = true
             player.play()
         }
     }
-    
+
     private var positionController: PositionController? {
         didSet {
             guard positionController !== oldValue else {
@@ -54,7 +67,7 @@ public class VLCPlayerViewController: UIViewController {
             positionController?.isEnabled = true
         }
     }
-    
+
     private var isOpening: Bool = false {
         didSet {
             guard self.viewIfLoaded != nil else {
@@ -68,32 +81,32 @@ public class VLCPlayerViewController: UIViewController {
             self.setUpPositionController()
         }
     }
-    
+
     private var isBuffering: Bool = false {
         didSet {
             if isBuffering {
                 bufferingIndicator.startAnimating()
             } else {
                 bufferingIndicator.stopAnimating()
-                
+
             }
             rightActionIndicator.isHidden = isBuffering
         }
     }
-    
-    public let player = VLCMediaPlayer()
-    
+
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        guard let _ = self.media else {
-            fatalError("Should define a media before presenting player.")
+        guard let _ = self.player.media else {
+            fatalError("The VLCPlayer player should contain a media before presenting player.")
         }
-        
-        player.delegate = self
+
+        NotificationCenter.default.addObserver(self, selector: #selector(VLCPlayerViewController.mediaPlayerTimeChanged(_:)), name: NSNotification.Name(rawValue: VLCMediaPlayerTimeChanged), object: player)
+        NotificationCenter.default.addObserver(self, selector: #selector(VLCPlayerViewController.mediaPlayerStateChanged(_:)), name: NSNotification.Name(rawValue: VLCMediaPlayerStateChanged), object: player)
+
         player.drawable = videoView
         player.play()
         playbackControlView.isHidden = true
@@ -103,24 +116,23 @@ public class VLCPlayerViewController: UIViewController {
         remainingLabel.font = font
         positionLabel.font = font
         scrubbingLabel.font = font
-        
+
         scrubbingPositionController.player = player
-        
+
         setUpGestures()
         setUpPositionController()
         updateViews(with: player.time)
         animateIndicatorsIfNecessary()
     }
-    
+
     deinit {
         player.stop()
     }
-    
+
     public override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
- 
 
     // MARK: IB Actions
     @IBAction func click(_ sender: LongPressGestureRecogniser) {
@@ -129,7 +141,7 @@ public class VLCPlayerViewController: UIViewController {
     @IBAction func playOrPause(_ sender: Any) {
         positionController?.playOrPause(sender)
     }
-    
+
     // MARK: Control
     var playbackControlHideTimer: Timer?
     public func showPlaybackControl() {
@@ -137,45 +149,43 @@ public class VLCPlayerViewController: UIViewController {
         if player.state != .paused {
             autoHideControl()
         }
-        
+
         guard self.playbackControlView.isHidden else {
             return
         }
         self.cancelGesture.isEnabled = true
-        
+
         UIView.transition(with: view, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.playbackControlView.isHidden = false
         })
-        
-       
+
     }
-    
+
     private func autoHideControl() {
         playbackControlHideTimer?.invalidate()
-        playbackControlHideTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { timer in
+        playbackControlHideTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { _ in
             self.hideControl()
         }
     }
-    
+
     private func hideControl() {
         playbackControlHideTimer?.invalidate()
         self.cancelGesture.isEnabled = false
-        
+
         guard !self.playbackControlView.isHidden else {
             return
         }
-        
+
         UIView.transition(with: self.view, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.playbackControlView.isHidden = true
         })
     }
-    
+
     @IBAction func cancel(_ sender: Any) {
         player.play()
         hideControl()
     }
 }
-
 
 // MARK: - Update views
 extension VLCPlayerViewController {
@@ -187,24 +197,24 @@ extension VLCPlayerViewController {
             positionConstraint.constant = transportBar.bounds.width / 2
             return
         }
-        
+
         positionConstraint.constant = round(CGFloat(value / totalValue) * transportBar.bounds.width)
         remainingLabel.isHidden = positionConstraint.constant + positionLabel.frame.width > remainingLabel.frame.minX - 60
     }
-    
+
     fileprivate func updateRemainingLabel(with time: VLCTime) {
         guard let totalTime = player.totalTime, totalTime.value != nil else {
             return
         }
         remainingLabel.text = (totalTime - time).stringValue
     }
-    
+
     fileprivate func setUpPositionController() {
         guard player.isSeekable && !isOpening  else {
             positionController = nil
             return
         }
-        
+
         if player.state == .paused {
             scrubbingPositionController.selectedTime = player.time
             positionController = scrubbingPositionController
@@ -212,7 +222,7 @@ extension VLCPlayerViewController {
             positionController = remoteActionPositionController
         }
     }
-    
+
     fileprivate func animateIndicatorsIfNecessary() {
         if player.state == .opening {
             openingIndicator.startAnimating()
@@ -221,11 +231,12 @@ extension VLCPlayerViewController {
             isBuffering = true
         }
     }
+
     fileprivate func setUpGestures() {
         playPauseGesture.isEnabled = player.state != .opening && player.state != .stopped
         actionGesture.isEnabled = playPauseGesture.isEnabled
     }
-    
+
     fileprivate func handlePlaybackControlVisibility() {
         if player.state == .paused {
             showPlaybackControl()
@@ -235,9 +246,6 @@ extension VLCPlayerViewController {
     }
 }
 
-
-
-
 // MARK: - VLC Delegate
 extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
@@ -246,12 +254,12 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         setUpPositionController()
         animateIndicatorsIfNecessary()
         handlePlaybackControlVisibility()
-        
+
         if player.state == .ended || player.state == .error || player.state == .stopped {
             dismiss(animated: true)
         }
     }
-    
+
     public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         isOpening = false
         isBuffering = false
@@ -265,7 +273,7 @@ extension VLCPlayerViewController: ScrubbingPositionControllerDelegate {
     func scrubbingPositionController(_ vc: ScrubbingPositionController, didScrubToTime time: VLCTime) {
         updateRemainingLabel(with: time)
     }
-    
+
     func scrubbingPositionController(_ vc: ScrubbingPositionController, didSelectTime time: VLCTime) {
         player.time = time
         updateViews(with: time) // ?

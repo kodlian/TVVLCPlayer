@@ -35,7 +35,9 @@ import TVVLCPlayer
 override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       if let playerViewController = segue.destination as? VLCPlayerViewController {
             let media: VLCMedia = ...
-            playerViewController.media = media
+            let player = VLCMediaPlayer()
+            player.media = media
+            playerViewController.player = player
       }
 }
 
@@ -46,7 +48,9 @@ override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 import TVVLCPlayer
 ...
 let media: VLCMedia = ...
-let playerViewController = VLCPlayerViewController.instantiate(media: media)
+let player = VLCMediaPlayer()
+player.media = media
+let playerViewController = VLCPlayerViewController.instantiate(player: player)
 ```
 
 ## Todo
