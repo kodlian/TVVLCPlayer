@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3BCAC221D6CFEC00BE40EC /* LongPressGestureRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */; };
 		3F7CC77021D698320094B074 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC76F21D698320094B074 /* AVFoundation.framework */; };
 		3F7CC77221D6985C0094B074 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC77121D6985C0094B074 /* VideoToolbox.framework */; };
 		3F7CC77421D698C20094B074 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CC77321D698C20094B074 /* AudioToolbox.framework */; };
@@ -27,7 +28,6 @@
 		3F8FF6E921D63C7500A86CDF /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */; };
 		3F8FF6EA21D63C7500A86CDF /* RemoteActionPositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */; };
 		3F8FF6EB21D63C7500A86CDF /* ScrubbingPositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */; };
-		3F8FF6EC21D63C7500A86CDF /* LongPressGestureRecogniser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */; };
 		3F8FF6ED21D63C7500A86CDF /* VLC+addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E421D63C6F00A86CDF /* VLC+addition.swift */; };
 		3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E521D63C6F00A86CDF /* GradientView.swift */; };
 		3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E621D63C6F00A86CDF /* PositionController.swift */; };
@@ -267,6 +267,7 @@
 					};
 					3F7CC79E21D6A9550094B074 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -325,7 +326,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -pr $SCRIPT_INPUT_FILE_0 $SCRIPT_OUTPUT_FILE_0/Modules";
+			shellScript = "cp -pr $SCRIPT_INPUT_FILE_0 $SCRIPT_OUTPUT_FILE_0/Modules\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -334,7 +335,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8FF6EC21D63C7500A86CDF /* LongPressGestureRecogniser.swift in Sources */,
+				3F3BCAC221D6CFEC00BE40EC /* LongPressGestureRecogniser.swift in Sources */,
 				3F8FF6EB21D63C7500A86CDF /* ScrubbingPositionController.swift in Sources */,
 				3F8FF6E921D63C7500A86CDF /* ProgressBar.swift in Sources */,
 				3F8FF6ED21D63C7500A86CDF /* VLC+addition.swift in Sources */,
@@ -569,7 +570,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};
@@ -589,7 +590,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kodlian.Demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.4;
 			};

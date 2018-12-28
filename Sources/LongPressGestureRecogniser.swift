@@ -11,13 +11,13 @@ class LongPressGestureRecogniser: UIGestureRecognizer {
     
     override init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
-        allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)]
+        allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         cancelsTouchesInView = false
 
     }
     
     override func awakeFromNib() {
-        allowedPressTypes = [NSNumber(value: UIPressType.select.rawValue)]
+        allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         cancelsTouchesInView = false
     }
     
