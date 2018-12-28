@@ -10,9 +10,19 @@ TVVLCPlayer lets you integrate easily a powerfull video player with playback con
 - Jump, fast forward and rewind
 
 ## Installation
+```
+# Carthage
+github "kodlian/TVVLCPlayer", "~> 1.1.0"
+```
+
 ```ruby
 # CocoaPods
-pod "TVVLCPlayer", "~> 1.0.2"
+pod "TVVLCPlayer", "~> 1.1.0"
+
+pre_install do |installer|
+	# workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
+	Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+end
 ```
 
 ## Usage

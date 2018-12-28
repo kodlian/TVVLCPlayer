@@ -1,13 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = "TVVLCPlayer"
-  s.version          = "1.0.2"
+  s.version          = "1.1.0"
   s.summary          = "A powerfull video player"
 
   s.description      = <<-DESC
   TVVLCPlayer lets you integrate easylily a powerfull video player with playback control views to your tv apps.
    Based on TVVLCKit, it aims to replace AVPlayerViewController that can read only a limited number of formats.
                        DESC
-  s.static_framework = true
   s.homepage         = "https://github.com/kodlian/TVVLCPlayer"
   s.screenshots      =  "https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/screenshot.jpg"
   s.license          = 'MIT'
@@ -21,10 +20,7 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'UIKit'
   s.dependency 'TVVLCKit'
-  s.pod_target_xcconfig = {
-      'SWIFT_OBJC_BRIDGING_HEADER' => "${PODS_TARGET_SRCROOT}/Sources/TVVLCPlayer-Bridging-Header.h"
-  }
-  s.resources = ["Resources/*.storyboard"]
-  s.resource_bundle = { 'TVVLCPlayer' => [ 'Resources/*.xcassets' ] }
-
+  s.resources = ['Resources/*.storyboard','Resources/*.xcassets']
+  s.script_phase = { :name => 'Add modulemaps in VLCKit', :script => 'cp -rf "${PODS_TARGET_SRCROOT}/Modules" "${PODS_ROOT}/TVVLCKit/TVVLCKit.framework/Modules"', :execution_position => :before_compile }
+  s.preserve_path = "Modules"
 end

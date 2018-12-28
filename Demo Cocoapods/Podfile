@@ -1,0 +1,17 @@
+platform :tvos, '11.0'
+inhibit_all_warnings!
+
+source 'https://github.com/CocoaPods/Specs'
+
+target 'Demo' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for TVVLCPlayer
+  pod 'TVVLCPlayer', :path => "../TVVLCPlayer.podspec"
+end
+
+pre_install do |installer|
+	# workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
+	Pod::Installer::Xcode::TargetValidator.send(:define_method, :verify_no_static_framework_transitive_dependencies) {}
+end
