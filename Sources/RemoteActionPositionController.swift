@@ -17,23 +17,16 @@ protocol RemoteActionPositionControllerDelegate {
 
 // MARK: - SurfaceRemotePositionController
 class RemoteActionPositionController: NSObject, PositionController {
-    
-    
     enum Location {
         case left, center, right
     }
-    
-    
     
     @objc
     enum Action: Int {
         case fastForward, rewind, jumpForward, jumpBackward, reset, pause
         
         var images: (left: UIImage?, right: UIImage?) {
-            guard let url = Bundle.main.url(forResource: "TVVLCPlayer", withExtension: "bundle"),
-                let bundle = Bundle(url: url) else {
-                fatalError()
-            }
+            let bundle = Bundle(for: RemoteActionPositionController.self)
             
             switch self {
             case .fastForward:
