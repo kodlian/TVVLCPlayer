@@ -32,9 +32,10 @@
 		3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E521D63C6F00A86CDF /* GradientView.swift */; };
 		3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8FF6E621D63C6F00A86CDF /* PositionController.swift */; };
 		3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3F8FF70F21D6404C00A86CDF /* TVVLCPlayer-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F8FF71121D6438C00A86CDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8FF71021D6438C00A86CDF /* Foundation.framework */; };
 		3FE3F3F821D782E800F8C472 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3F3F721D782E800F8C472 /* .swiftlint.yml */; };
+		3FE3F3FA21D79D2B00F8C472 /* SelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3F3F921D79D2B00F8C472 /* SelectorTableViewController.swift */; };
+		3FE3F3FF21D7A2E800F8C472 /* SelectableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3F3FE21D7A2E800F8C472 /* SelectableCollection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +73,6 @@
 		3F7CC7B721D6AA680094B074 /* TVVLCPlayer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TVVLCPlayer.storyboard; sourceTree = "<group>"; };
 		3F7CC7BD21D6B1310094B074 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Modules; sourceTree = "<group>"; };
 		3F8FF6DE21D63C6F00A86CDF /* VLCPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLCPlayerViewController.swift; sourceTree = "<group>"; };
-		3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TVVLCPlayer-Bridging-Header.h"; sourceTree = "<group>"; };
 		3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteActionPositionController.swift; sourceTree = "<group>"; };
 		3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrubbingPositionController.swift; sourceTree = "<group>"; };
@@ -84,6 +84,8 @@
 		3F8FF6F221D63C8100A86CDF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8FF71021D6438C00A86CDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3FE3F3F721D782E800F8C472 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		3FE3F3F921D79D2B00F8C472 /* SelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorTableViewController.swift; sourceTree = "<group>"; };
+		3FE3F3FE21D7A2E800F8C472 /* SelectableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCollection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,14 +165,11 @@
 			isa = PBXGroup;
 			children = (
 				3F8FF6DE21D63C6F00A86CDF /* VLCPlayerViewController.swift */,
-				3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */,
-				3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */,
-				3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */,
-				3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */,
+				3FE3F3FC21D79D5800F8C472 /* Views */,
+				3FE3F3FB21D79D4700F8C472 /* Position */,
+				3FE3F3FD21D7A2B000F8C472 /* Panel */,
 				3F8FF6E321D63C6F00A86CDF /* LongPressGestureRecogniser.swift */,
 				3F8FF6E421D63C6F00A86CDF /* VLC+addition.swift */,
-				3F8FF6E521D63C6F00A86CDF /* GradientView.swift */,
-				3F8FF6E621D63C6F00A86CDF /* PositionController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -205,6 +204,34 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3FE3F3FB21D79D4700F8C472 /* Position */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FF6E621D63C6F00A86CDF /* PositionController.swift */,
+				3F8FF6E121D63C6F00A86CDF /* RemoteActionPositionController.swift */,
+				3F8FF6E221D63C6F00A86CDF /* ScrubbingPositionController.swift */,
+			);
+			path = Position;
+			sourceTree = "<group>";
+		};
+		3FE3F3FC21D79D5800F8C472 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */,
+				3F8FF6E521D63C6F00A86CDF /* GradientView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3FE3F3FD21D7A2B000F8C472 /* Panel */ = {
+			isa = PBXGroup;
+			children = (
+				3FE3F3FE21D7A2E800F8C472 /* SelectableCollection.swift */,
+				3FE3F3F921D79D2B00F8C472 /* SelectorTableViewController.swift */,
+			);
+			path = Panel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -212,7 +239,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F8FF70F21D6404C00A86CDF /* TVVLCPlayer-Bridging-Header.h in Headers */,
 				3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,9 +386,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3BCAC221D6CFEC00BE40EC /* LongPressGestureRecogniser.swift in Sources */,
+				3FE3F3FA21D79D2B00F8C472 /* SelectorTableViewController.swift in Sources */,
 				3F8FF6EB21D63C7500A86CDF /* ScrubbingPositionController.swift in Sources */,
 				3F8FF6E921D63C7500A86CDF /* ProgressBar.swift in Sources */,
 				3F8FF6ED21D63C7500A86CDF /* VLC+addition.swift in Sources */,
+				3FE3F3FF21D7A2E800F8C472 /* SelectableCollection.swift in Sources */,
 				3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */,
 				3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */,
 				3F8FF6E721D63C7500A86CDF /* VLCPlayerViewController.swift in Sources */,
