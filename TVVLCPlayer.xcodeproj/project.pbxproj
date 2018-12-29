@@ -34,6 +34,7 @@
 		3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F8FF70F21D6404C00A86CDF /* TVVLCPlayer-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6DF21D63C6F00A86CDF /* TVVLCPlayer-Bridging-Header.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F8FF71121D6438C00A86CDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8FF71021D6438C00A86CDF /* Foundation.framework */; };
+		3FE3F3F821D782E800F8C472 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3F3F721D782E800F8C472 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		3F19D41F21288C4C009E68AF /* TVVLCPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TVVLCPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F3BCAC421D6ED3500BE40EC /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		3F7CC76F21D698320094B074 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3F7CC77121D6985C0094B074 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		3F7CC77321D698C20094B074 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -81,6 +83,7 @@
 		3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVVLCPlayer.h; sourceTree = "<group>"; };
 		3F8FF6F221D63C8100A86CDF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8FF71021D6438C00A86CDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3FE3F3F721D782E800F8C472 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,8 @@
 		3F19D41521288C4C009E68AF = {
 			isa = PBXGroup;
 			children = (
+				3FE3F3F721D782E800F8C472 /* .swiftlint.yml */,
+				3F3BCAC421D6ED3500BE40EC /* Readme.md */,
 				3F8FF6F021D63C8100A86CDF /* TVVLCPlayer */,
 				3F8FF6DD21D63C6F00A86CDF /* Sources */,
 				3F7CC7B521D6AA680094B074 /* Resources */,
@@ -219,6 +224,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3F19D42721288C4C009E68AF /* Build configuration list for PBXNativeTarget "TVVLCPlayer" */;
 			buildPhases = (
+				3F3BCAC321D6E92300BE40EC /* ShellScript */,
 				3F7CC7BF21D6B1420094B074 /* Copy modulemap in VLC Kit framework */,
 				3F19D41A21288C4C009E68AF /* Headers */,
 				3F19D41B21288C4C009E68AF /* Sources */,
@@ -295,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FE3F3F821D782E800F8C472 /* .swiftlint.yml in Resources */,
 				3F7CC7B821D6AA680094B074 /* Images.xcassets in Resources */,
 				3F7CC7B921D6AA680094B074 /* TVVLCPlayer.storyboard in Resources */,
 			);
@@ -312,6 +319,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3F3BCAC321D6E92300BE40EC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint autocorrect\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		3F7CC7BF21D6B1420094B074 /* Copy modulemap in VLC Kit framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -1,5 +1,3 @@
-
-
 import Foundation
 import UIKit.UIGestureRecognizerSubclass
 
@@ -8,19 +6,19 @@ class LongPressGestureRecogniser: UIGestureRecognizer {
     var isClick: Bool = false
 
     private var longPressTimer: Timer?
-    
+
     override init(target: Any?, action: Selector?) {
         super.init(target: target, action: action)
         allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         cancelsTouchesInView = false
 
     }
-    
+
     override func awakeFromNib() {
         allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
         cancelsTouchesInView = false
     }
-    
+
     override func reset() {
         longPressTimer?.invalidate()
         longPressTimer = nil
@@ -44,19 +42,18 @@ class LongPressGestureRecogniser: UIGestureRecognizer {
             self.state = .changed
         }
     }
-    
+
     override func pressesChanged(_ presses: Set<UIPress>, with event: UIPressesEvent) {
 
     }
-    
+
     override func pressesCancelled(_ presses: Set<UIPress>, with event: UIPressesEvent) {
         longPressTimer?.invalidate()
         state = .cancelled
     }
-    
+
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent) {
         longPressTimer?.invalidate()
         state = .ended
     }
 }
-

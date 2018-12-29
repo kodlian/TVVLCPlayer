@@ -15,26 +15,24 @@ extension VLCMediaPlayer {
     }
 }
 
-func -(tl: VLCTime, tr: VLCTime) -> VLCTime {
-    guard let left = tl.value?.doubleValue, let right = tr.value?.doubleValue else {
+func - (timeLeft: VLCTime, timeRight: VLCTime) -> VLCTime {
+    guard let left = timeLeft.value?.doubleValue, let right = timeRight.value?.doubleValue else {
         return VLCTime()
     }
     return VLCTime(number: (left - right) as NSNumber)
 }
-func +(tl: VLCTime, tr: VLCTime) -> VLCTime {
-    guard let left = tl.value?.doubleValue, let right = tr.value?.doubleValue else {
+func + (timeLeft: VLCTime, timeRight: VLCTime) -> VLCTime {
+    guard let left = timeLeft.value?.doubleValue, let right = timeRight.value?.doubleValue else {
         return VLCTime()
     }
     return VLCTime(number: (left + right) as NSNumber)
 }
-func *(tl: VLCTime, factor: Double) -> VLCTime {
-    guard let left = tl.value?.doubleValue else {
+func * (timeLeft: VLCTime, factor: Double) -> VLCTime {
+    guard let left = timeLeft.value?.doubleValue else {
         return VLCTime()
     }
     return VLCTime(number: (left * factor) as NSNumber)
 }
-
-
 
 extension VLCTime {
     public convenience init(_ double: Double) {

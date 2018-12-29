@@ -100,12 +100,18 @@ public class VLCPlayerViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        guard let _ = self.player.media else {
+        guard self.player.media != nil else {
             fatalError("The VLCPlayer player should contain a media before presenting player.")
         }
 
-        NotificationCenter.default.addObserver(self, selector: #selector(VLCPlayerViewController.mediaPlayerTimeChanged(_:)), name: NSNotification.Name(rawValue: VLCMediaPlayerTimeChanged), object: player)
-        NotificationCenter.default.addObserver(self, selector: #selector(VLCPlayerViewController.mediaPlayerStateChanged(_:)), name: NSNotification.Name(rawValue: VLCMediaPlayerStateChanged), object: player)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(VLCPlayerViewController.mediaPlayerTimeChanged(_:)),
+                                               name: NSNotification.Name(rawValue: VLCMediaPlayerTimeChanged),
+                                               object: player)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(VLCPlayerViewController.mediaPlayerStateChanged(_:)),
+                                               name: NSNotification.Name(rawValue: VLCMediaPlayerStateChanged),
+                                               object: player)
 
         player.drawable = videoView
         player.play()
@@ -192,7 +198,9 @@ extension VLCPlayerViewController {
     fileprivate func updateViews(with time: VLCTime) {
         positionLabel.text = time.stringValue
 
-        guard let totalTime = player.totalTime, let value = time.value?.doubleValue, let totalValue = totalTime.value?.doubleValue else {
+        guard let totalTime = player.totalTime,
+            let value = time.value?.doubleValue,
+            let totalValue = totalTime.value?.doubleValue else {
             remainingLabel.isHidden = true
             positionConstraint.constant = transportBar.bounds.width / 2
             return
@@ -247,9 +255,9 @@ extension VLCPlayerViewController {
 }
 
 // MARK: - VLC Delegate
-extension VLCPlayerViewController: VLCMediaPlayerDelegate {
+extension VLCPlayerViewController {
 
-    public func mediaPlayerStateChanged(_ aNotification: Notification!) {
+    @objc func mediaPlayerStateChanged(_ aNotification: Notification!) {
         setUpGestures()
         setUpPositionController()
         animateIndicatorsIfNecessary()
@@ -260,7 +268,7 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
         }
     }
 
-    public func mediaPlayerTimeChanged(_ aNotification: Notification!) {
+    @objc func mediaPlayerTimeChanged(_ aNotification: Notification!) {
         isOpening = false
         isBuffering = false
 
@@ -270,11 +278,11 @@ extension VLCPlayerViewController: VLCMediaPlayerDelegate {
 
 // MARK: - Scrubbling Delegate
 extension VLCPlayerViewController: ScrubbingPositionControllerDelegate {
-    func scrubbingPositionController(_ vc: ScrubbingPositionController, didScrubToTime time: VLCTime) {
+    func scrubbingPositionController(_ : ScrubbingPositionController, didScrubToTime time: VLCTime) {
         updateRemainingLabel(with: time)
     }
 
-    func scrubbingPositionController(_ vc: ScrubbingPositionController, didSelectTime time: VLCTime) {
+    func scrubbingPositionController(_ : ScrubbingPositionController, didSelectTime time: VLCTime) {
         player.time = time
         updateViews(with: time) // ?
         player.play()
@@ -283,10 +291,10 @@ extension VLCPlayerViewController: ScrubbingPositionControllerDelegate {
 
 // MARK: - Remote Action Delegate
 extension VLCPlayerViewController: RemoteActionPositionControllerDelegate {
-    func remoteActionPositionControllerDidDetectTouch(_ vc: RemoteActionPositionController) {
+    func remoteActionPositionControllerDidDetectTouch(_ : RemoteActionPositionController) {
         showPlaybackControl()
     }
-    func remoteActionPositionController(_ vc: RemoteActionPositionController, didSelectAction action: RemoteActionPositionController.Action) {
+    func remoteActionPositionController(_ : RemoteActionPositionController, didSelectAction action: RemoteActionPositionController.Action) {
         showPlaybackControl()
 
         switch action {
