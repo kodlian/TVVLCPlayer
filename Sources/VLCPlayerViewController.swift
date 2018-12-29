@@ -263,7 +263,7 @@ extension VLCPlayerViewController {
     }
 }
 
-// MARK: - VLC Delegate
+// MARK: - VLC notifications
 extension VLCPlayerViewController {
 
     @objc func mediaPlayerStateChanged(_ aNotification: Notification!) {
