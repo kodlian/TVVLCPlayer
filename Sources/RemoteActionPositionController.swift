@@ -138,6 +138,9 @@ class RemoteActionPositionController: NSObject, PositionController {
     private func trackSurfaceTouch() {
         gamePad?.reportsAbsoluteDpadValues = true
         gamePad?.dpad.valueChangedHandler = { [unowned self] dpad, xValue, yValue in
+            guard self.isEnabled else { // BUG: We can receive callback even after the untrack method has been called
+                return
+            }
 
             if xValue > 0.5 {
                 self.touchLocation = .right
