@@ -73,6 +73,11 @@ public class VLCPlayerViewController: UIViewController {
             guard self.viewIfLoaded != nil else {
                 return
             }
+
+            guard isOpening != oldValue else {
+                return
+            }
+
             if isOpening {
                 openingIndicator.startAnimating()
             } else {
@@ -84,6 +89,10 @@ public class VLCPlayerViewController: UIViewController {
 
     private var isBuffering: Bool = false {
         didSet {
+            guard isBuffering != oldValue else {
+                return
+            }
+
             if isBuffering {
                 bufferingIndicator.startAnimating()
             } else {
