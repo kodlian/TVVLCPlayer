@@ -28,7 +28,7 @@ end
 ## Usage
 ### Storyboard
 In your storyboard add a reference to the `VLCPlayer` storyboard from the `com.kodlian.TVVLCPlayer` bundle if you use carthage or `org.cocoapods.TVVLCPlayer` bundle if you use cocoapods.
-Then set a media on the playerViewController:
+Then set a player with a media on the playerViewController:
 ```swift
 import TVVLCPlayer
 ...
