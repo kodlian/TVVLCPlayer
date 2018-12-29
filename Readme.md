@@ -12,12 +12,12 @@ TVVLCPlayer lets you integrate easily a powerfull video player with playback con
 ## Installation
 ```
 # Carthage
-github "kodlian/TVVLCPlayer", "~> 1.1.0"
+github "kodlian/TVVLCPlayer", "~> 1.1.1"
 ```
 
 ```ruby
 # CocoaPods
-pod ":git => 'https://github.com/kodlian/TVVLCPlayer.git', :tag => "1.1.0"
+pod ":git => 'https://github.com/kodlian/TVVLCPlayer.git', :tag => "1.1.1"
 
 pre_install do |installer|
 	# workaround for https://github.com/CocoaPods/CocoaPods/issues/3289
