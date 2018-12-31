@@ -244,11 +244,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Y94-dP-KPg"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yx4-AL-RRh">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="280"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="scrollableAxes" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="32" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ud2-W6-VYu">
-                                <rect key="frame" x="0.0" y="68" width="200" height="292"/>
+                                <rect key="frame" x="0.0" y="68" width="200" height="212"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="-1" reuseIdentifier="cell" focusStyle="custom" id="0ug-bR-MBf" customClass="SelectableTableViewCell" customModule="TVVLCPlayer" customModuleProvider="target">
@@ -349,27 +349,20 @@
                         <viewControllerLayoutGuide type="bottom" id="H2b-86-bqs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b0X-UL-sap">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="440"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar userInteractionEnabled="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nUw-69-7Mp" userLabel="Background">
-                                <rect key="frame" x="0.0" y="140" width="1920" height="360"/>
+                                <rect key="frame" x="0.0" y="140" width="1920" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items/>
                             </tabBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzF-me-rKK">
-                                <rect key="frame" x="0.0" y="140" width="1920" height="360"/>
+                                <rect key="frame" x="0.0" y="140" width="1920" height="300"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="9Ah-fg-VbH" appends="YES" id="RY8-S6-oBT"/>
                                 </connections>
-                            </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNG-A6-SXa">
-                                <rect key="frame" x="0.0" y="140" width="1920" height="2"/>
-                                <color key="backgroundColor" white="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="zFD-0W-r0u"/>
-                                </constraints>
                             </view>
                             <tabBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="7jY-xf-laM">
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
@@ -385,6 +378,13 @@
                                     <outletCollection property="gestureRecognizers" destination="YDb-aS-pRE" appends="YES" id="0Zk-16-BM4"/>
                                 </connections>
                             </tabBar>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gNG-A6-SXa">
+                                <rect key="frame" x="0.0" y="139" width="1920" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="zFD-0W-r0u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="LzF-me-rKK" secondAttribute="bottom" id="7me-6h-zmT"/>
@@ -398,7 +398,7 @@
                             <constraint firstAttribute="trailing" secondItem="gNG-A6-SXa" secondAttribute="trailing" id="VaW-bX-ybL"/>
                             <constraint firstItem="LzF-me-rKK" firstAttribute="leading" secondItem="b0X-UL-sap" secondAttribute="leading" id="WAp-lB-RxE"/>
                             <constraint firstItem="7jY-xf-laM" firstAttribute="top" secondItem="b0X-UL-sap" secondAttribute="top" id="d7e-3q-HF5"/>
-                            <constraint firstItem="gNG-A6-SXa" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="bottom" id="ebU-Kh-XIB"/>
+                            <constraint firstItem="gNG-A6-SXa" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="bottom" constant="-1" id="ebU-Kh-XIB"/>
                             <constraint firstItem="nUw-69-7Mp" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="bottom" id="gAa-BE-eic"/>
                             <constraint firstItem="gNG-A6-SXa" firstAttribute="leading" secondItem="b0X-UL-sap" secondAttribute="leading" id="jeI-79-Ocf"/>
                             <constraint firstAttribute="bottom" secondItem="nUw-69-7Mp" secondAttribute="bottom" id="t5w-tD-6Sn"/>
@@ -406,8 +406,9 @@
                         <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="20" bottom="0.0" trailing="20"/>
                         <viewLayoutGuide key="safeArea" id="ooU-zT-hBS"/>
                     </view>
-                    <size key="freeformSize" width="1920" height="500"/>
+                    <size key="freeformSize" width="1920" height="440"/>
                     <connections>
+                        <outlet property="backgroundTopConstraint" destination="gAa-BE-eic" id="4PW-BV-VxK"/>
                         <outlet property="contentView" destination="LzF-me-rKK" id="tdv-QY-o15"/>
                         <outlet property="tabBar" destination="7jY-xf-laM" id="NRV-MX-08M"/>
                     </connections>
@@ -447,14 +448,14 @@
                         <viewControllerLayoutGuide type="bottom" id="DRa-Au-fFu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="L1f-1g-nW8">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="rc6-8j-FNH">
-                                <rect key="frame" x="640" y="0.0" width="640" height="360"/>
+                                <rect key="frame" x="640" y="0.0" width="640" height="280"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZA-UM-5LM">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="360"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="400" id="4Zx-Du-Jas"/>
                                         </constraints>
@@ -463,7 +464,7 @@
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMU-Cb-b6A">
-                                        <rect key="frame" x="440" y="0.0" width="200" height="360"/>
+                                        <rect key="frame" x="440" y="0.0" width="200" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="a8W-oL-CWd"/>
                                         </constraints>
@@ -478,13 +479,13 @@
                             <constraint firstItem="rc6-8j-FNH" firstAttribute="top" secondItem="L1f-1g-nW8" secondAttribute="top" id="O5o-Rw-KQS"/>
                             <constraint firstItem="rc6-8j-FNH" firstAttribute="centerX" secondItem="L1f-1g-nW8" secondAttribute="centerX" id="WDU-nw-bQa"/>
                             <constraint firstItem="rc6-8j-FNH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fUE-xd-LXV" secondAttribute="leading" id="eQW-v4-pDd"/>
-                            <constraint firstAttribute="bottom" secondItem="rc6-8j-FNH" secondAttribute="bottom" id="hYP-GS-xaC"/>
+                            <constraint firstAttribute="bottom" secondItem="rc6-8j-FNH" secondAttribute="bottom" constant="20" id="hYP-GS-xaC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fUE-xd-LXV"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="EYt-wh-4f0"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <size key="freeformSize" width="1920" height="360"/>
+                    <size key="freeformSize" width="1920" height="300"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7WK-dI-1hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -499,14 +500,14 @@
                         <viewControllerLayoutGuide type="bottom" id="p8e-Mb-xhk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="F4e-hm-KlR">
-                        <rect key="frame" x="0.0" y="0.0" width="1920" height="360"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="FM0-aa-CR6">
-                                <rect key="frame" x="470" y="0.0" width="980" height="360"/>
+                                <rect key="frame" x="470" y="0.0" width="980" height="280"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GN2-QF-hn0">
-                                        <rect key="frame" x="0.0" y="0.0" width="300" height="360"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="9p2-22-1rr"/>
                                         </constraints>
@@ -515,7 +516,7 @@
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqa-F7-G6o">
-                                        <rect key="frame" x="340" y="0.0" width="400" height="360"/>
+                                        <rect key="frame" x="340" y="0.0" width="400" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="400" id="m5m-ng-JnB"/>
                                         </constraints>
@@ -524,7 +525,7 @@
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dfw-Yi-mT6">
-                                        <rect key="frame" x="780" y="0.0" width="200" height="360"/>
+                                        <rect key="frame" x="780" y="0.0" width="200" height="280"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="5oh-88-UJc"/>
                                         </constraints>
@@ -538,14 +539,14 @@
                         <constraints>
                             <constraint firstItem="FM0-aa-CR6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="STa-4I-bp6" secondAttribute="leading" id="13d-Wn-Lec"/>
                             <constraint firstItem="FM0-aa-CR6" firstAttribute="centerX" secondItem="F4e-hm-KlR" secondAttribute="centerX" id="GkD-vS-HyM"/>
-                            <constraint firstAttribute="bottom" secondItem="FM0-aa-CR6" secondAttribute="bottom" id="IhR-40-qB5"/>
+                            <constraint firstAttribute="bottom" secondItem="FM0-aa-CR6" secondAttribute="bottom" constant="20" id="IhR-40-qB5"/>
                             <constraint firstItem="FM0-aa-CR6" firstAttribute="top" secondItem="F4e-hm-KlR" secondAttribute="top" id="yGK-fg-Lab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="STa-4I-bp6"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="JKU-Dt-QIR" userLabel="Audio"/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <size key="freeformSize" width="1920" height="360"/>
+                    <size key="freeformSize" width="1920" height="300"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNv-y4-8KF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

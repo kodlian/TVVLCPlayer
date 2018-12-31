@@ -10,6 +10,7 @@ import UIKit
 import TVVLCKit
 
 protocol PanelViewControllerDelegate: class {
+    func panelViewController(_ panelViewController: PanelViewController, didSelectTabAtIndex: Int)
     func panelViewControllerDidDismiss(_ panelViewController: PanelViewController)
 }
 
@@ -17,6 +18,8 @@ protocol PanelViewControllerDelegate: class {
 class PanelViewController: UIViewController {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
+
     weak var delegate: PanelViewControllerDelegate?
     var player: VLCMediaPlayer!
     var selectedIndex: Int = 0 {
@@ -25,6 +28,7 @@ class PanelViewController: UIViewController {
                 return
             }
             updateContentForSelection()
+            self.delegate?.panelViewController(self, didSelectTabAtIndex: selectedIndex)
         }
     }
 
@@ -43,9 +47,19 @@ class PanelViewController: UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        preferredContentSize = CGSize(width: 1920, height: 480)
+        preferredContentSize = CGSize(width: 1920, height: 450)
         setupViewControllers()
         updateContentForSelection()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Hack to put a continous blur background behind the panel
+        // Hide the background bar of the tabBar and extend the background tabBar behind.
+        // This is done here since the background of tabBar is only available after the view has appeared.
+        tabBar.subviews[0].isHidden = true
+        backgroundTopConstraint.constant = -tabBar.frame.height
     }
 
     func setupViewControllers() {
