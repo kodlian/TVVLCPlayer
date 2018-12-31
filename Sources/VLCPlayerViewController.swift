@@ -103,6 +103,8 @@ public class VLCPlayerViewController: UIViewController {
         }
     }
 
+    private var lastSelectedPanelTabIndex: Int = 0
+
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
     }
@@ -340,6 +342,7 @@ extension VLCPlayerViewController: UIGestureRecognizerDelegate {
 extension VLCPlayerViewController {
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? PanelViewController {
+            destination.selectedIndex = lastSelectedPanelTabIndex
             destination.player = player
             destination.transitioningDelegate = self
             destination.delegate = self
@@ -357,6 +360,10 @@ extension VLCPlayerViewController: UIViewControllerTransitioningDelegate {
 }
 
 extension VLCPlayerViewController: PanelViewControllerDelegate {
+    func panelViewController(_ panelViewController: PanelViewController, didSelectTabAtIndex index: Int) {
+        lastSelectedPanelTabIndex = index
+    }
+
     func panelViewControllerDidDismiss(_ panelViewController: PanelViewController) {
         setUpPositionController()
         handlePlaybackControlVisibility()
