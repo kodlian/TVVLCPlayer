@@ -15,6 +15,3 @@ FOUNDATION_EXPORT double TVVLCPlayerVersionNumber;
 FOUNDATION_EXPORT const unsigned char TVVLCPlayerVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <TVVLCPlayer/PublicHeader.h>
-
-#import "TVVLCPlayer-Bridging-Header.h"
-//#import <TVVLCKit/TVVLCKit.h>

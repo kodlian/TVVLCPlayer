@@ -157,6 +157,12 @@ public class VLCPlayerViewController: UIViewController {
         positionController?.playOrPause(sender)
     }
 
+    @IBAction func showPanel(_ sender: Any) {
+        self.performSegue(withIdentifier: "panel", sender: sender)
+        setUpPositionController()
+        hideControl()
+    }
+
     // MARK: Control
     var playbackControlHideTimer: Timer?
     public func showPlaybackControl() {
@@ -327,5 +333,32 @@ extension VLCPlayerViewController: RemoteActionPositionControllerDelegate {
 extension VLCPlayerViewController: UIGestureRecognizerDelegate {
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+// MARK: - Panel
+extension VLCPlayerViewController {
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? PanelViewController {
+            destination.player = player
+            destination.transitioningDelegate = self
+            destination.delegate = self
+        }
+    }
+}
+
+extension VLCPlayerViewController: UIViewControllerTransitioningDelegate {
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return presented is PanelViewController ? SlideDownAnimatedTransitioner() : nil
+    }
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return dismissed is PanelViewController ? SlideUpAnimatedTransitioner() : nil
+    }
+}
+
+extension VLCPlayerViewController: PanelViewControllerDelegate {
+    func panelViewControllerDidDismiss(_ panelViewController: PanelViewController) {
+        setUpPositionController()
+        handlePlaybackControlVisibility()
     }
 }
