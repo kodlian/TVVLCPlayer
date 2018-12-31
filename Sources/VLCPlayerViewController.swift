@@ -104,6 +104,10 @@ public class VLCPlayerViewController: UIViewController {
     }
 
     private var lastSelectedPanelTabIndex: Int = 0
+    private var displayedPanelViewController: UIViewController?
+    private var isPanelDisplayed: Bool {
+        return displayedPanelViewController != nil
+    }
 
     public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
         return .dark
@@ -235,7 +239,7 @@ extension VLCPlayerViewController {
     }
 
     fileprivate func setUpPositionController() {
-        guard player.isSeekable && !isOpening  else {
+        guard player.isSeekable && !isOpening && !isPanelDisplayed else {
             positionController = nil
             return
         }
@@ -346,6 +350,7 @@ extension VLCPlayerViewController {
             destination.player = player
             destination.transitioningDelegate = self
             destination.delegate = self
+            displayedPanelViewController = destination
         }
     }
 }
@@ -365,6 +370,7 @@ extension VLCPlayerViewController: PanelViewControllerDelegate {
     }
 
     func panelViewControllerDidDismiss(_ panelViewController: PanelViewController) {
+        displayedPanelViewController = nil
         setUpPositionController()
         handlePlaybackControlVisibility()
     }
