@@ -353,7 +353,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar userInteractionEnabled="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="nUw-69-7Mp" userLabel="Background">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="500"/>
+                                <rect key="frame" x="0.0" y="140" width="1920" height="360"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items/>
                             </tabBar>
@@ -399,7 +399,7 @@
                             <constraint firstItem="LzF-me-rKK" firstAttribute="leading" secondItem="b0X-UL-sap" secondAttribute="leading" id="WAp-lB-RxE"/>
                             <constraint firstItem="7jY-xf-laM" firstAttribute="top" secondItem="b0X-UL-sap" secondAttribute="top" id="d7e-3q-HF5"/>
                             <constraint firstItem="gNG-A6-SXa" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="bottom" id="ebU-Kh-XIB"/>
-                            <constraint firstItem="nUw-69-7Mp" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="top" id="gAa-BE-eic"/>
+                            <constraint firstItem="nUw-69-7Mp" firstAttribute="top" secondItem="7jY-xf-laM" secondAttribute="bottom" id="gAa-BE-eic"/>
                             <constraint firstItem="gNG-A6-SXa" firstAttribute="leading" secondItem="b0X-UL-sap" secondAttribute="leading" id="jeI-79-Ocf"/>
                             <constraint firstAttribute="bottom" secondItem="nUw-69-7Mp" secondAttribute="bottom" id="t5w-tD-6Sn"/>
                         </constraints>
