@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let animatonDuration = 0.6
+private let animatonDuration = 0.3
 
 // MARK: SlideDown
 class SlideDownAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
@@ -47,7 +47,8 @@ class SlideUpAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitioni
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let secondVCView = transitionContext.view(forKey: .from) else {
+        guard let secondVCView = transitionContext.view(forKey: .from),
+         let secondVC = transitionContext.viewController(forKey: .from) else {
             return
         }
 
@@ -56,7 +57,7 @@ class SlideUpAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitioni
                        delay: 0.0, usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0.0,
                        options: .allowUserInteraction,
-                       animations: { secondVCView.frame.origin.y = -secondVCView.frame.height  },
+                       animations: { secondVCView.frame.origin.y = -secondVC.preferredContentSize.height  },
                        completion: { _ in
                         secondVCView.removeFromSuperview()
                         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)})

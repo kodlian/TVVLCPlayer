@@ -19,6 +19,7 @@ class PanelViewController: UIViewController {
     @IBOutlet weak var tabBar: UITabBar!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var backgroundTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var contentHeightConstraint: NSLayoutConstraint!
 
     weak var delegate: PanelViewControllerDelegate?
     var player: VLCMediaPlayer!
@@ -31,7 +32,9 @@ class PanelViewController: UIViewController {
             self.delegate?.panelViewController(self, didSelectTabAtIndex: selectedIndex)
         }
     }
-
+    public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
+        return .dark
+    }
     private var currentViewController: UIViewController?
     private var viewControllers: [UIViewController] = [] {
         didSet {
@@ -47,7 +50,6 @@ class PanelViewController: UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        preferredContentSize = CGSize(width: 1920, height: 450)
         setupViewControllers()
         updateContentForSelection()
     }
@@ -65,15 +67,23 @@ class PanelViewController: UIViewController {
     func setupViewControllers() {
         // TODO: Translate title
         // swiftlint:disable force_cast
-        let audioViewController = storyboard!.instantiateViewController(withIdentifier: "audio") as! AudioViewController
-        audioViewController.title = "Audio"
-        audioViewController.player = player
+        let infoViewController = storyboard!.instantiateViewController(withIdentifier: "info") as! InfoViewController
+        infoViewController.title = "Info"
+        infoViewController.player = player
+
         // swiftlint:disable force_cast line_length
         let subtitlesViewController = storyboard!.instantiateViewController(withIdentifier: "subtitles") as! SubtitlesViewController
         subtitlesViewController.title = "Subtitles"
         subtitlesViewController.player = player
 
-        viewControllers = [audioViewController, subtitlesViewController]
+        // swiftlint:disable force_cast
+        let audioViewController = storyboard!.instantiateViewController(withIdentifier: "audio") as! AudioViewController
+        audioViewController.title = "Audio"
+        audioViewController.player = player
+        viewControllers = [infoViewController, subtitlesViewController, audioViewController]
+        
+        contentView.layer.masksToBounds = true // Avoid content to appear on tabbar during panel content transition and height animation
+
     }
 
     func updateTabBars() {
@@ -124,25 +134,39 @@ class PanelViewController: UIViewController {
             newViewController.view.translatesAutoresizingMaskIntoConstraints = false
 
             contentView.addSubview(newViewController.view)
-            newViewController.view.constraintEdgeToSuperView()
+            newViewController.view.constraintToSuperviewBottom(usingHeight: newViewController.preferredContentSize.height)
+            self.view.layoutIfNeeded() // Force layout the previous constraints to avoid them to animate
+
+            self.contentHeightConstraint.constant = newViewController.preferredContentSize.height
 
             UIView.animate(withDuration: 0.3,
+                           delay: 0,
+                           options: .curveEaseOut,
                            animations: {
-                           oldViewController.view.alpha = 0
-                           newViewController.view.alpha = 1
+                            oldViewController.view.alpha = 0
+                            newViewController.view.alpha = 1
+
+                            self.view.layoutIfNeeded() // Animate height constraint
 
             },
                            completion: { (_) in
                             oldViewController.removeFromParent()
-                            oldViewController.view.alpha = 1
                             oldViewController.view.removeFromSuperview()
+                            oldViewController.view.alpha = 1
+
             })
         } else {
             newViewController.view.translatesAutoresizingMaskIntoConstraints = false
             contentView.addSubview(newViewController.view)
-            newViewController.view.constraintEdgeToSuperView()
+            newViewController.view.constraintToSuperviewBottom(usingHeight: newViewController.preferredContentSize.height)
+            newViewController.view.layoutIfNeeded()
+            self.contentHeightConstraint.constant = newViewController.preferredContentSize.height
+
         }
+
         currentViewController = newViewController
+        preferredContentSize = CGSize(width: 1920, height: newViewController.preferredContentSize.height + tabBar
+            .frame.height)
     }
 }
 
@@ -154,17 +178,15 @@ extension PanelViewController: UITabBarDelegate {
 }
 
 // MARK: - UIView extension
-extension UIView {
-    func constraintEdgeToSuperView() {
+private extension UIView {
+    func constraintToSuperviewBottom(usingHeight height: CGFloat) {
         guard let superview = self.superview else {
             return
         }
-
-        self.topAnchor.constraint(equalTo: superview.topAnchor, constant: 0).isActive = true
+        self.heightAnchor.constraint(equalToConstant: height).isActive = true
         self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: 0).isActive = true
         self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
-
     }
 
     func hasSuperview(_ superview: UIView) -> Bool {

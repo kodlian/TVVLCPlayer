@@ -19,6 +19,7 @@ class SubtitlesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        preferredContentSize = CGSize(width: 1920, height: 310)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
