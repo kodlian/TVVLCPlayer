@@ -56,5 +56,9 @@ let playerViewController = VLCPlayerViewController.instantiate(player: player)
 ## Todo
 - [x] Audio channels selector
 - [x] Subtitles selector
-- [ ] Info views
+- [x] Info views
 - [ ] Translate panel view
+- [ ] Configuration for panel
+- [ ] Panel indicator on top
+
+
