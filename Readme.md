@@ -1,6 +1,7 @@
 # TVVLCPlayer
 
-[![TVVLCPlayer](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/thumbnail.png)](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/screenshot.jpg)
+[![player](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/thumbnail.jpg)](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/screenshot.jpg)
+[![panel](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/thumbnail2.jpg)](https://raw.githubusercontent.com/kodlian/TVVLCPlayer/master/screenshot2.jpg)
 
 TVVLCPlayer lets you integrate easily a powerfull video player with playback control views to your tvOS apps. Based on [TVVLCKit](https://code.videolan.org/videolan/VLCKit), it aims to replace AVPlayerViewController that can read only a limited number of formats.
 
