@@ -72,17 +72,24 @@ class InfoViewController: UIViewController {
         if let time = media?.length.string {
             caption.append(time)
         }
-
+        let bundle = Bundle(for: InfoViewController.self)
         captionLabel.text = caption
 
-        if player.videoSize >= CGSize(width: 3840, height: 2160) {
-            qualityImageView.image = UIImage(named: "4k")
+        let videoSize: CGSize
+        if let width = media?.metaDictionary[VLCMediaTracksInformationVideoWidth] as? NSNumber,
+            let height = media?.metaDictionary[VLCMediaTracksInformationVideoWidth] as? NSNumber {
+            videoSize = CGSize(width: width.doubleValue, height: height.doubleValue)
+        } else {
+            videoSize = player.videoSize
+        }
+
+        if videoSize >= CGSize(width: 3840, height: 2160) {
+            qualityImageView.image = UIImage(named: "4k", in: bundle, compatibleWith: nil)
         } else if player.videoSize >= CGSize(width: 1280, height: 720) {
-            qualityImageView.image = UIImage(named: "hd")
+            qualityImageView.image = UIImage(named: "hd", in: bundle, compatibleWith: nil)
         } else {
             qualityImageView.image = nil
         }
-
     }
 
     func configureDescription() {
@@ -109,7 +116,7 @@ private extension VLCTime {
         let duration = rawDuration / 1000
         let formatter = DateComponentsFormatter()
         formatter.zeroFormattingBehavior = .pad
-        formatter.unitsStyle = .brief
+        formatter.unitsStyle = .abbreviated
 
         if duration >= 3600 {
             formatter.allowedUnits = [.hour, .minute, .second]
