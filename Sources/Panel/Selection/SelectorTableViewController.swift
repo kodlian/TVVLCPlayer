@@ -36,6 +36,11 @@ class SelectorTableViewController: UIViewController {
             tableView.scrollToRow(at: IndexPath(row: selectedIndex, section: 0), at: .middle, animated: animated)
         }
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        tableView.reloadData()
+    }
 }
 
 // MARK: Data Source
@@ -57,8 +62,9 @@ extension SelectorTableViewController: UITableViewDataSource {
            fatalError()
         }
         cell.label.text = collection[indexPath.row]
-        cell.checkmarkView.isHidden = collection.selectedIndex != indexPath.row
-        update(cell, with: .gray)
+        let isSelected = collection.selectedIndex == indexPath.row
+        cell.checkmarkView.isHidden = !isSelected
+        update(cell, with: traitCollection.userInterfaceStyle.textColor)
         return cell
     }
 
@@ -70,7 +76,7 @@ extension SelectorTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let indexPath = context.previouslyFocusedIndexPath,
             let cell = tableView.cellForRow(at: indexPath) as? SelectableTableViewCell {
-            update(cell, with: .gray)
+            update(cell, with: traitCollection.userInterfaceStyle.textColor)
         }
         if let nextIndexPath = context.nextFocusedIndexPath,
             let cell = tableView.cellForRow(at: nextIndexPath) as? SelectableTableViewCell {

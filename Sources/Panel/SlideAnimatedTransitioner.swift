@@ -24,9 +24,7 @@ class SlideDownAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitio
         let firstVCView = transitionContext.containerView
         firstVCView.addSubview(secondVCView)
 
-        let rect =  secondVC.preferredContentSize
-        secondVCView.frame.size = rect
-        secondVCView.frame.origin.y = -secondVCView.frame.height
+        secondVCView.frame.origin.y = -secondVC.preferredContentSize.height
 
         UIView.animate(withDuration: animatonDuration,
                        delay: 0.0,

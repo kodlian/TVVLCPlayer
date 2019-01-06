@@ -36,6 +36,7 @@
 		3F8FF70D21D63EF400A86CDF /* TVVLCPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F8FF6F121D63C8100A86CDF /* TVVLCPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F8FF71121D6438C00A86CDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8FF71021D6438C00A86CDF /* Foundation.framework */; };
 		3F94CA0421DA55AE0010B78B /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F94CA0321DA55AE0010B78B /* InfoViewController.swift */; };
+		3FC8AAF321DD72AF005C4068 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC8AAF221DD72AF005C4068 /* Theme.swift */; };
 		3FE3F3F821D782E800F8C472 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3FE3F3F721D782E800F8C472 /* .swiftlint.yml */; };
 		3FE3F3FA21D79D2B00F8C472 /* SelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3F3F921D79D2B00F8C472 /* SelectorTableViewController.swift */; };
 		3FE3F3FF21D7A2E800F8C472 /* SelectableCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE3F3FE21D7A2E800F8C472 /* SelectableCollection.swift */; };
@@ -110,6 +111,7 @@
 		3F8FF6F221D63C8100A86CDF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8FF71021D6438C00A86CDF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3F94CA0321DA55AE0010B78B /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		3FC8AAF221DD72AF005C4068 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		3FE3F3F721D782E800F8C472 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		3FE3F3F921D79D2B00F8C472 /* SelectorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectorTableViewController.swift; sourceTree = "<group>"; };
 		3FE3F3FE21D7A2E800F8C472 /* SelectableCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableCollection.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			children = (
 				3F8FF6E021D63C6F00A86CDF /* ProgressBar.swift */,
 				3F8FF6E521D63C6F00A86CDF /* GradientView.swift */,
+				3FC8AAF221DD72AF005C4068 /* Theme.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				3F8FF6EF21D63C7500A86CDF /* PositionController.swift in Sources */,
 				3F8FF6EE21D63C7500A86CDF /* GradientView.swift in Sources */,
 				3FE3F40421D7E75A00F8C472 /* SlideAnimatedTransitioner.swift in Sources */,
+				3FC8AAF321DD72AF005C4068 /* Theme.swift in Sources */,
 				3F8FF6E721D63C7500A86CDF /* VLCPlayerViewController.swift in Sources */,
 				3F8FF6EA21D63C7500A86CDF /* RemoteActionPositionController.swift in Sources */,
 				3FE3F40621D7E85300F8C472 /* PanelViewController.swift in Sources */,

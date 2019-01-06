@@ -109,10 +109,6 @@ public class VLCPlayerViewController: UIViewController {
         return displayedPanelViewController != nil
     }
 
-    public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
-        return .dark
-    }
-
     public override func viewDidLoad() {
         super.viewDidLoad()
         guard self.player.media != nil else {

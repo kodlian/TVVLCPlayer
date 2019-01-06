@@ -23,12 +23,8 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTitle()
-        configureCaption()
-        configureArtwork()
-        configureDescription()
-        view.layoutIfNeeded()
-        
+        configure()
+
         // TODO: Find a better way to handle variable height of the info panel
         var height = mainStackView.frame.height
         if artworkImageView.isHidden {
@@ -42,7 +38,14 @@ class InfoViewController: UIViewController {
         preferredContentSize = CGSize(width: 1920,
                                       height: height)
     }
-    
+
+    func configure() {
+        configureTitle()
+        configureCaption()
+        configureArtwork()
+        configureDescription()
+    }
+
     func configureArtwork() {
         let mediaDict = player.media?.metaDictionary
         if let image = mediaDict?[VLCMetaInformationArtwork] as? UIImage {
@@ -61,7 +64,6 @@ class InfoViewController: UIViewController {
         } else {
            titleLabel.text = player.media?.url.absoluteString
         }
-        titleLabel.textColor = .gray
     }
 
     func configureCaption() {
@@ -72,7 +74,6 @@ class InfoViewController: UIViewController {
         }
 
         captionLabel.text = caption
-        captionLabel.textColor = .gray
 
         if player.videoSize >= CGSize(width: 3840, height: 2160) {
             qualityImageView.image = UIImage(named: "4k")
@@ -92,7 +93,6 @@ class InfoViewController: UIViewController {
         textView.textContainerInset = UIEdgeInsets.zero
         textView.textContainer.lineFragmentPadding = 0
         textView.isHidden = texts.isEmpty
-        textView.textColor = .gray
     }
 }
 

@@ -32,9 +32,7 @@ class PanelViewController: UIViewController {
             self.delegate?.panelViewController(self, didSelectTabAtIndex: selectedIndex)
         }
     }
-    public override var preferredUserInterfaceStyle: UIUserInterfaceStyle {
-        return .dark
-    }
+
     private var currentViewController: UIViewController?
     private var viewControllers: [UIViewController] = [] {
         didSet {
@@ -81,7 +79,7 @@ class PanelViewController: UIViewController {
         audioViewController.title = "Audio"
         audioViewController.player = player
         viewControllers = [infoViewController, subtitlesViewController, audioViewController]
-        
+
         contentView.layer.masksToBounds = true // Avoid content to appear on tabbar during panel content transition and height animation
 
     }
@@ -97,7 +95,7 @@ class PanelViewController: UIViewController {
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         if let nextView = context.nextFocusedView {
-            tabBar.tintColor = nextView.hasSuperview(tabBar) ? .white : .gray
+            tabBar.tintColor = nextView.hasSuperview(tabBar) ? .white : traitCollection.userInterfaceStyle.textColor
         }
     }
 
