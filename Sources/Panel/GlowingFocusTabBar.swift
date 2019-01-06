@@ -44,9 +44,7 @@ class GlowingFocusTabBar: UITabBar {
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
         addSubview(focusView)
-
-        // Add recognizer to superview to capture touches that start in other views //superview?.
-        superview?.addGestureRecognizer(activateFocusViewGesture)
+        addGestureRecognizer(activateFocusViewGesture)
     }
 }
 
