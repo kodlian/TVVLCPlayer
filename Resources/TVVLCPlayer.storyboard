@@ -267,7 +267,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0KT-Tf-4Eh">
-                                                    <rect key="frame" x="32" y="0.0" width="88" height="37"/>
+                                                    <rect key="frame" x="32" y="0.0" width="188" height="37"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="31"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -341,7 +341,7 @@
                     <viewLayoutGuide key="safeArea" id="9G8-Ne-zxb"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="12778" y="4752"/>
+            <point key="canvasLocation" x="12881" y="4389"/>
         </scene>
         <!--Panel View Controller-->
         <scene sceneID="2bl-la-zcp">
@@ -371,7 +371,7 @@
                                             <outletCollection property="gestureRecognizers" destination="9Ah-fg-VbH" appends="YES" id="RY8-S6-oBT"/>
                                         </connections>
                                     </view>
-                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jY-xf-laM">
+                                    <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7jY-xf-laM" customClass="GlowingFocusTabBar" customModule="TVVLCPlayer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="1920" height="140"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="140" id="Dgh-kj-7ay"/>
@@ -395,6 +395,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gNG-A6-SXa" secondAttribute="trailing" id="1Tj-9l-XeS"/>
                                     <constraint firstItem="LzF-me-rKK" firstAttribute="leading" secondItem="2er-Vi-q13" secondAttribute="leading" id="C7o-sl-rbG"/>

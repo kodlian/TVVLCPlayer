@@ -93,12 +93,6 @@ class PanelViewController: UIViewController {
         tabBar.selectedItem = items[selectedIndex]
     }
 
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        if let nextView = context.nextFocusedView {
-            tabBar.tintColor = nextView.hasSuperview(tabBar) ? .white : traitCollection.userInterfaceStyle.textColor
-        }
-    }
-
     // MARK: Actions
     @IBAction func collapse(_ sender: Any) {
         dismiss(animated: true) {
@@ -185,17 +179,5 @@ private extension UIView {
         self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: 0).isActive = true
         self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
-    }
-
-    func hasSuperview(_ superview: UIView) -> Bool {
-        var current = self.superview
-        while current != nil {
-            if current == superview {
-                return true
-            }
-
-            current = current?.superview
-        }
-        return false
     }
 }
