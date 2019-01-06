@@ -38,13 +38,12 @@ class ScrubbingPositionController: NSObject, PositionController {
     }
     var selectedTime: VLCTime = VLCTime() { // Animate scrubbing view hidden
         didSet {
-            guard let totalTime = player.totalTime else {
-                fatalError("ScrubbingPositionController supports only video with a total time")
+            guard let totalTime = player.totalTime?.value?.doubleValue else {
+                return
             }
 
             let value = selectedTime.value.doubleValue
-            let totalTimeValue = totalTime.value.doubleValue
-            scrubbingPositionConstraint.constant = round(CGFloat(value / totalTimeValue) * transportBar.bounds.width)
+            scrubbingPositionConstraint.constant = round(CGFloat(value / totalTime) * transportBar.bounds.width)
             scrubbingLabel.text = selectedTime.stringValue
         }
     }
