@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.swift_version    = '4.0'
   s.tvos.deployment_target = '11.0'
 
-  s.source_files = 'Sources/*.{swift,h}'
+  s.source_files = 'Sources/**/*.{swift,h}'
 
   s.frameworks = 'UIKit'
   s.dependency 'TVVLCKit'
