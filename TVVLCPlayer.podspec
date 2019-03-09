@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.author           = "Jérémy Marchand"
   s.source           = { :git => "https://github.com/kodlian/TVVLCPlayer.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/kodlian'
-  s.swift_version    = '4.0'
+  s.swift_version    = '4.2'
   s.tvos.deployment_target = '11.0'
 
   s.source_files = 'Sources/**/*.{swift,h}'
