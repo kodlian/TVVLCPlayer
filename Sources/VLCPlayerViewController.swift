@@ -214,7 +214,7 @@ public class VLCPlayerViewController: UIViewController {
 extension VLCPlayerViewController {
     fileprivate func updateViews(with time: VLCTime) {
         positionLabel.text = time.stringValue
-
+        updateRemainingLabel(with: time)
         guard let totalTime = player.totalTime,
             let value = time.value?.doubleValue,
             let totalValue = totalTime.value?.doubleValue else {
