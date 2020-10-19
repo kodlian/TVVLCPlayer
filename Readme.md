@@ -61,5 +61,5 @@ let playerViewController = VLCPlayerViewController.instantiate(player: player)
 - [ ] Translate panel view
 - [ ] Configuration for panel
 - [ ] Panel indicator on top
-
+- [ ] Rebuild UI using SwiftUI 
 
